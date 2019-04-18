@@ -954,539 +954,536 @@
     <table id="251" parent="6" name="web_host"/>
     <table id="252" parent="6" name="web_hostissue"/>
     <table id="253" parent="6" name="web_init"/>
-    <table id="254" parent="6" name="web_issue"/>
-    <table id="255" parent="6" name="web_role"/>
-    <table id="256" parent="6" name="web_teamprojt"/>
-    <table id="257" parent="6" name="web_teamprojt_developer"/>
-    <table id="258" parent="6" name="web_teamprojt_nginx_host"/>
-    <table id="259" parent="6" name="web_teamprojt_principal"/>
-    <table id="260" parent="6" name="web_teamprojt_server_host"/>
-    <table id="261" parent="6" name="web_teamprojt_tester"/>
-    <table id="262" parent="6" name="web_user"/>
-    <table id="263" parent="6" name="web_user_role"/>
-    <column id="264" parent="239" name="id">
+    <table id="254" parent="6" name="web_initlog"/>
+    <table id="255" parent="6" name="web_initlog_hosts_list"/>
+    <table id="256" parent="6" name="web_issue"/>
+    <table id="257" parent="6" name="web_teamprojt"/>
+    <table id="258" parent="6" name="web_teamprojt_boss"/>
+    <table id="259" parent="6" name="web_teamprojt_developer"/>
+    <table id="260" parent="6" name="web_teamprojt_nginx_host"/>
+    <table id="261" parent="6" name="web_teamprojt_ops_user"/>
+    <table id="262" parent="6" name="web_teamprojt_server_host"/>
+    <table id="263" parent="6" name="web_teamprojt_tester"/>
+    <table id="264" parent="6" name="web_user"/>
+    <column id="265" parent="239" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="239" name="name">
+    <column id="266" parent="239" name="name">
       <Position>2</Position>
       <DataType>varchar(80)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="266" parent="239" name="name">
+    <index id="267" parent="239" name="name">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="267" parent="239" name="PRIMARY">
+    <key id="268" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="268" parent="239" name="name">
+    <key id="269" parent="239" name="name">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>name</UnderlyingIndexName>
     </key>
-    <column id="269" parent="240" name="id">
+    <column id="270" parent="240" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="240" name="group_id">
+    <column id="271" parent="240" name="group_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="240" name="permission_id">
+    <column id="272" parent="240" name="permission_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="272" parent="240" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
+    <index id="273" parent="240" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
       <ColNames>group_id
 permission_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="273" parent="240" name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm">
+    <index id="274" parent="240" name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm">
       <ColNames>permission_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="274" parent="240" name="PRIMARY">
+    <key id="275" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="275" parent="240" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
+    <key id="276" parent="240" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
       <ColNames>group_id
 permission_id</ColNames>
       <UnderlyingIndexName>auth_group_permissions_group_id_permission_id_0cd325b0_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="276" parent="240" name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id">
+    <foreign-key id="277" parent="240" name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id">
       <ColNames>group_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="277" parent="240" name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm">
+    <foreign-key id="278" parent="240" name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm">
       <ColNames>permission_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_permission</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="278" parent="241" name="id">
+    <column id="279" parent="241" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="241" name="name">
+    <column id="280" parent="241" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="241" name="content_type_id">
+    <column id="281" parent="241" name="content_type_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="241" name="codename">
+    <column id="282" parent="241" name="codename">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="282" parent="241" name="auth_permission_content_type_id_codename_01ab375a_uniq">
+    <index id="283" parent="241" name="auth_permission_content_type_id_codename_01ab375a_uniq">
       <ColNames>content_type_id
 codename</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="283" parent="241" name="PRIMARY">
+    <key id="284" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="284" parent="241" name="auth_permission_content_type_id_codename_01ab375a_uniq">
+    <key id="285" parent="241" name="auth_permission_content_type_id_codename_01ab375a_uniq">
       <ColNames>content_type_id
 codename</ColNames>
       <UnderlyingIndexName>auth_permission_content_type_id_codename_01ab375a_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="285" parent="241" name="auth_permission_content_type_id_2f476e4b_fk_django_co">
+    <foreign-key id="286" parent="241" name="auth_permission_content_type_id_2f476e4b_fk_django_co">
       <ColNames>content_type_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>django_content_type</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="286" parent="242" name="id">
+    <column id="287" parent="242" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="242" name="password">
+    <column id="288" parent="242" name="password">
       <Position>2</Position>
       <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="242" name="last_login">
+    <column id="289" parent="242" name="last_login">
       <Position>3</Position>
       <DataType>datetime(6)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="242" name="is_superuser">
+    <column id="290" parent="242" name="is_superuser">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="242" name="username">
+    <column id="291" parent="242" name="username">
       <Position>5</Position>
       <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="242" name="first_name">
+    <column id="292" parent="242" name="first_name">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="242" name="last_name">
+    <column id="293" parent="242" name="last_name">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="242" name="email">
+    <column id="294" parent="242" name="email">
       <Position>8</Position>
       <DataType>varchar(254)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="242" name="is_staff">
+    <column id="295" parent="242" name="is_staff">
       <Position>9</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="242" name="is_active">
+    <column id="296" parent="242" name="is_active">
       <Position>10</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="242" name="date_joined">
+    <column id="297" parent="242" name="date_joined">
       <Position>11</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="297" parent="242" name="username">
+    <index id="298" parent="242" name="username">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="298" parent="242" name="PRIMARY">
+    <key id="299" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="299" parent="242" name="username">
+    <key id="300" parent="242" name="username">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>
-    <column id="300" parent="243" name="id">
+    <column id="301" parent="243" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="243" name="user_id">
+    <column id="302" parent="243" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="243" name="group_id">
+    <column id="303" parent="243" name="group_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="303" parent="243" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
+    <index id="304" parent="243" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
       <ColNames>user_id
 group_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="304" parent="243" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
+    <index id="305" parent="243" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
       <ColNames>group_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="305" parent="243" name="PRIMARY">
+    <key id="306" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="306" parent="243" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
+    <key id="307" parent="243" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
       <ColNames>user_id
 group_id</ColNames>
       <UnderlyingIndexName>auth_user_groups_user_id_group_id_94350c0c_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="307" parent="243" name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id">
+    <foreign-key id="308" parent="243" name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="308" parent="243" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
+    <foreign-key id="309" parent="243" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
       <ColNames>group_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="309" parent="244" name="id">
+    <column id="310" parent="244" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="244" name="user_id">
+    <column id="311" parent="244" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="244" name="permission_id">
+    <column id="312" parent="244" name="permission_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="312" parent="244" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
+    <index id="313" parent="244" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
       <ColNames>user_id
 permission_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="313" parent="244" name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm">
+    <index id="314" parent="244" name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm">
       <ColNames>permission_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="314" parent="244" name="PRIMARY">
+    <key id="315" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="315" parent="244" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
+    <key id="316" parent="244" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
       <ColNames>user_id
 permission_id</ColNames>
       <UnderlyingIndexName>auth_user_user_permissions_user_id_permission_id_14a6b632_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="316" parent="244" name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id">
+    <foreign-key id="317" parent="244" name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="317" parent="244" name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm">
+    <foreign-key id="318" parent="244" name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm">
       <ColNames>permission_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_permission</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="318" parent="245" name="id">
+    <column id="319" parent="245" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="319" parent="245" name="action_time">
+    <column id="320" parent="245" name="action_time">
       <Position>2</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="245" name="object_id">
+    <column id="321" parent="245" name="object_id">
       <Position>3</Position>
       <DataType>longtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="245" name="object_repr">
+    <column id="322" parent="245" name="object_repr">
       <Position>4</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="245" name="action_flag">
+    <column id="323" parent="245" name="action_flag">
       <Position>5</Position>
       <DataType>smallint(5) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="245" name="change_message">
+    <column id="324" parent="245" name="change_message">
       <Position>6</Position>
       <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="245" name="content_type_id">
+    <column id="325" parent="245" name="content_type_id">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="245" name="user_id">
+    <column id="326" parent="245" name="user_id">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="326" parent="245" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
+    <index id="327" parent="245" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
       <ColNames>content_type_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="327" parent="245" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
+    <index id="328" parent="245" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="328" parent="245" name="PRIMARY">
+    <key id="329" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="329" parent="245" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
+    <foreign-key id="330" parent="245" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
       <ColNames>content_type_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>django_content_type</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="330" parent="245" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
+    <foreign-key id="331" parent="245" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="331" parent="246" name="id">
+    <column id="332" parent="246" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="246" name="app_label">
+    <column id="333" parent="246" name="app_label">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="246" name="model">
+    <column id="334" parent="246" name="model">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="334" parent="246" name="django_content_type_app_label_model_76bd3d3b_uniq">
+    <index id="335" parent="246" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="335" parent="246" name="PRIMARY">
+    <key id="336" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="336" parent="246" name="django_content_type_app_label_model_76bd3d3b_uniq">
+    <key id="337" parent="246" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
       <UnderlyingIndexName>django_content_type_app_label_model_76bd3d3b_uniq</UnderlyingIndexName>
     </key>
-    <column id="337" parent="247" name="id">
+    <column id="338" parent="247" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="247" name="app">
+    <column id="339" parent="247" name="app">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="339" parent="247" name="name">
+    <column id="340" parent="247" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="247" name="applied">
+    <column id="341" parent="247" name="applied">
       <Position>4</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="341" parent="247" name="PRIMARY">
+    <key id="342" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="342" parent="248" name="session_key">
+    <column id="343" parent="248" name="session_key">
       <Position>1</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="248" name="session_data">
+    <column id="344" parent="248" name="session_data">
       <Position>2</Position>
       <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="248" name="expire_date">
+    <column id="345" parent="248" name="expire_date">
       <Position>3</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="345" parent="248" name="django_session_expire_date_a5c62663">
+    <index id="346" parent="248" name="django_session_expire_date_a5c62663">
       <ColNames>expire_date</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="346" parent="248" name="PRIMARY">
+    <key id="347" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>session_key</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="347" parent="249" name="id">
+    <column id="348" parent="249" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="249" name="command_name">
+    <column id="349" parent="249" name="command">
       <Position>2</Position>
-      <DataType>varchar(120)|0s</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="249" name="result">
+    <column id="350" parent="249" name="result">
       <Position>3</Position>
-      <DataType>varchar(120)|0s</DataType>
+      <DataType>varchar(2000)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="249" name="host_list_id">
+    <column id="351" parent="249" name="hosts_list">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(20000)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="351" parent="249" name="operator_id">
+    <column id="352" parent="249" name="create_time">
       <Position>5</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="353" parent="249" name="user_id">
+      <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="352" parent="249" name="web_command_host_list_id_838c27e7_fk_web_host_id">
-      <ColNames>host_list_id</ColNames>
+    <index id="354" parent="249" name="web_command_user_id_cf1a8c92_fk_web_user_id">
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="353" parent="249" name="web_command_operator_id_312d925c_fk_web_user_id">
-      <ColNames>operator_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="354" parent="249" name="PRIMARY">
+    <key id="355" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="355" parent="249" name="web_command_host_list_id_838c27e7_fk_web_host_id">
-      <ColNames>host_list_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_host</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="356" parent="249" name="web_command_operator_id_312d925c_fk_web_user_id">
-      <ColNames>operator_id</ColNames>
+    <foreign-key id="356" parent="249" name="web_command_user_id_cf1a8c92_fk_web_user_id">
+      <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_user</RefTableName>
       <RefColNames>id</RefColNames>
@@ -1498,7 +1495,7 @@ model</ColNames>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="250" name="cron_name">
+    <column id="358" parent="250" name="name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1506,725 +1503,903 @@ model</ColNames>
     </column>
     <column id="359" parent="250" name="time">
       <Position>3</Position>
-      <DataType>datetime(6)|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="360" parent="250" name="job">
-      <Position>4</Position>
-      <DataType>varchar(120)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="361" parent="250" name="note">
-      <Position>5</Position>
-      <DataType>varchar(300)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="362" parent="250" name="linux_user">
-      <Position>6</Position>
-      <DataType>varchar(16)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="363" parent="250" name="operator_id">
-      <Position>7</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="364" parent="250" name="web_cron_operator_id_26a85bf8_fk_web_user_id">
-      <ColNames>operator_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="365" parent="250" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="366" parent="250" name="web_cron_operator_id_26a85bf8_fk_web_user_id">
-      <ColNames>operator_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="367" parent="251" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="368" parent="251" name="name">
-      <Position>2</Position>
-      <DataType>varchar(254)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="369" parent="251" name="ip">
-      <Position>3</Position>
-      <DataType>varchar(16)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="370" parent="251" name="version">
-      <Position>4</Position>
-      <DataType>varchar(132)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="371" parent="251" name="ssh">
-      <Position>5</Position>
-      <DataType>varchar(16)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="372" parent="251" name="type">
-      <Position>6</Position>
-      <DataType>varchar(12)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="373" parent="251" name="hosts_status">
-      <Position>7</Position>
-      <DataType>varchar(64)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="374" parent="251" name="hosts_environment">
-      <Position>8</Position>
-      <DataType>varchar(64)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="375" parent="251" name="inits_id">
-      <Position>9</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="376" parent="251" name="web_host_inits_id_9bad841f_fk_web_init_id">
-      <ColNames>inits_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="377" parent="251" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="378" parent="251" name="web_host_inits_id_9bad841f_fk_web_init_id">
-      <ColNames>inits_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_init</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="379" parent="252" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="380" parent="252" name="time">
-      <Position>2</Position>
-      <DataType>datetime(6)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="381" parent="252" name="host_issue_status">
-      <Position>3</Position>
-      <DataType>varchar(64)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="382" parent="252" name="hosts_id">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="383" parent="252" name="innues_id">
-      <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="384" parent="252" name="web_hostissue_hosts_id_ce77dab0_fk_web_host_id">
-      <ColNames>hosts_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="385" parent="252" name="web_hostissue_innues_id_a748008c_fk_web_issue_id">
-      <ColNames>innues_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="386" parent="252" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="387" parent="252" name="web_hostissue_hosts_id_ce77dab0_fk_web_host_id">
-      <ColNames>hosts_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_host</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="388" parent="252" name="web_hostissue_innues_id_a748008c_fk_web_issue_id">
-      <ColNames>innues_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_issue</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="389" parent="253" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="390" parent="253" name="init_name">
-      <Position>2</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="391" parent="253" name="system">
-      <Position>3</Position>
-      <DataType>varchar(50)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="392" parent="253" name="init_function">
+    <column id="360" parent="250" name="host_list">
       <Position>4</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="393" parent="253" name="playbook">
+    <column id="361" parent="250" name="job">
       <Position>5</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(120)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="394" parent="253" name="init_time">
+    <column id="362" parent="250" name="note">
       <Position>6</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="363" parent="250" name="linux_user">
+      <Position>7</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="364" parent="250" name="create_time">
+      <Position>8</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="395" parent="253" name="PRIMARY">
+    <column id="365" parent="250" name="user_id">
+      <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="366" parent="250" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="367" parent="250" name="web_cron_user_id_d33daf91_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="368" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="396" parent="254" name="id">
+    <key id="369" parent="250" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <foreign-key id="370" parent="250" name="web_cron_user_id_d33daf91_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="371" parent="251" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="397" parent="254" name="version_num">
+    <column id="372" parent="251" name="name">
       <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(254)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="398" parent="254" name="issue_status">
+    <column id="373" parent="251" name="ip">
+      <Position>3</Position>
+      <DataType>char(39)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="374" parent="251" name="version">
+      <Position>4</Position>
+      <DataType>varchar(132)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="375" parent="251" name="ssh">
+      <Position>5</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="376" parent="251" name="type">
+      <Position>6</Position>
+      <DataType>varchar(12)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="377" parent="251" name="hosts_status">
+      <Position>7</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="378" parent="251" name="hosts_environment">
+      <Position>8</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="379" parent="251" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="380" parent="251" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="381" parent="251" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="382" parent="252" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="383" parent="252" name="time">
+      <Position>2</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="384" parent="252" name="status">
       <Position>3</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="399" parent="254" name="file_dir">
+    <column id="385" parent="252" name="host_id">
       <Position>4</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="400" parent="254" name="backups">
+    <column id="386" parent="252" name="issue_id">
       <Position>5</Position>
-      <DataType>varchar(64)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="401" parent="254" name="backup_path">
+    <column id="387" parent="252" name="team_id">
       <Position>6</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="402" parent="254" name="issue_team_id">
-      <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="403" parent="254" name="issuer_id">
-      <Position>8</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="404" parent="254" name="web_issue_issue_team_id_6def461a_fk_web_teamprojt_id">
-      <ColNames>issue_team_id</ColNames>
+    <index id="388" parent="252" name="web_hostissue_host_id_cac3d213_fk_web_host_id">
+      <ColNames>host_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="405" parent="254" name="web_issue_issuer_id_75039aae_fk_web_user_id">
-      <ColNames>issuer_id</ColNames>
+    <index id="389" parent="252" name="web_hostissue_issue_id_fafbde55_fk_web_issue_id">
+      <ColNames>issue_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="406" parent="254" name="PRIMARY">
+    <index id="390" parent="252" name="web_hostissue_team_id_67e0b357_fk_web_teamprojt_id">
+      <ColNames>team_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="391" parent="252" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="407" parent="254" name="web_issue_issue_team_id_6def461a_fk_web_teamprojt_id">
-      <ColNames>issue_team_id</ColNames>
+    <foreign-key id="392" parent="252" name="web_hostissue_host_id_cac3d213_fk_web_host_id">
+      <ColNames>host_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_host</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="393" parent="252" name="web_hostissue_issue_id_fafbde55_fk_web_issue_id">
+      <ColNames>issue_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_issue</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="394" parent="252" name="web_hostissue_team_id_67e0b357_fk_web_teamprojt_id">
+      <ColNames>team_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_teamprojt</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="408" parent="254" name="web_issue_issuer_id_75039aae_fk_web_user_id">
-      <ColNames>issuer_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="409" parent="255" name="id">
+    <column id="395" parent="253" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="410" parent="255" name="name">
+    <column id="396" parent="253" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="411" parent="255" name="PRIMARY">
+    <column id="397" parent="253" name="function">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="398" parent="253" name="playbook">
+      <Position>4</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="399" parent="253" name="create_time">
+      <Position>5</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="400" parent="253" name="create_user_id">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="401" parent="253" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="402" parent="253" name="function">
+      <ColNames>function</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="403" parent="253" name="web_init_create_user_id_2c7560ec_fk_web_user_id">
+      <ColNames>create_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="404" parent="253" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="412" parent="256" name="id">
+    <key id="405" parent="253" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <key id="406" parent="253" name="function">
+      <ColNames>function</ColNames>
+      <UnderlyingIndexName>function</UnderlyingIndexName>
+    </key>
+    <foreign-key id="407" parent="253" name="web_init_create_user_id_2c7560ec_fk_web_user_id">
+      <ColNames>create_user_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="408" parent="254" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="413" parent="256" name="name">
+    <column id="409" parent="254" name="create_time">
+      <Position>2</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="410" parent="254" name="init_id">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="411" parent="254" name="user_id">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="412" parent="254" name="web_initlog_init_id_7fb08dbf_fk_web_init_id">
+      <ColNames>init_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="413" parent="254" name="web_initlog_user_id_2459816b_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="414" parent="254" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="415" parent="254" name="web_initlog_init_id_7fb08dbf_fk_web_init_id">
+      <ColNames>init_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_init</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="416" parent="254" name="web_initlog_user_id_2459816b_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="417" parent="255" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="418" parent="255" name="initlog_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="419" parent="255" name="host_id">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="420" parent="255" name="web_initlog_hosts_list_initlog_id_host_id_07802b5b_uniq">
+      <ColNames>initlog_id
+host_id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="421" parent="255" name="web_initlog_hosts_list_host_id_c2681206_fk_web_host_id">
+      <ColNames>host_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="422" parent="255" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="423" parent="255" name="web_initlog_hosts_list_initlog_id_host_id_07802b5b_uniq">
+      <ColNames>initlog_id
+host_id</ColNames>
+      <UnderlyingIndexName>web_initlog_hosts_list_initlog_id_host_id_07802b5b_uniq</UnderlyingIndexName>
+    </key>
+    <foreign-key id="424" parent="255" name="web_initlog_hosts_list_initlog_id_be86e2d1_fk_web_initlog_id">
+      <ColNames>initlog_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_initlog</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="425" parent="255" name="web_initlog_hosts_list_host_id_c2681206_fk_web_host_id">
+      <ColNames>host_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_host</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="426" parent="256" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="427" parent="256" name="type">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="428" parent="256" name="status">
+      <Position>3</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="429" parent="256" name="file_dir">
+      <Position>4</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="430" parent="256" name="backup">
+      <Position>5</Position>
+      <DataType>varchar(12)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="431" parent="256" name="backup_path">
+      <Position>6</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="432" parent="256" name="upload_path">
+      <Position>7</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="433" parent="256" name="create_time">
+      <Position>8</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="434" parent="256" name="team_id">
+      <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="435" parent="256" name="user_id">
+      <Position>10</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="436" parent="256" name="web_issue_team_id_c6d697d7_fk_web_teamprojt_id">
+      <ColNames>team_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="437" parent="256" name="web_issue_user_id_1de92da5_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="438" parent="256" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="439" parent="256" name="web_issue_team_id_c6d697d7_fk_web_teamprojt_id">
+      <ColNames>team_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_teamprojt</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="440" parent="256" name="web_issue_user_id_1de92da5_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="441" parent="257" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="442" parent="257" name="name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="414" parent="256" name="create_time">
+    <column id="443" parent="257" name="create_time">
       <Position>3</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="415" parent="256" name="develop_language">
+    <column id="444" parent="257" name="develop_language">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="416" parent="256" name="team_status">
+    <column id="445" parent="257" name="team_status">
       <Position>5</Position>
-      <DataType>varchar(64)|0s</DataType>
+      <DataType>varchar(2)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="417" parent="256" name="nginx_conf">
+    <column id="446" parent="257" name="nginx_conf">
       <Position>6</Position>
       <DataType>varchar(254)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="418" parent="256" name="project_path">
+    <column id="447" parent="257" name="project_path">
       <Position>7</Position>
-      <DataType>varchar(60)|0s</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="419" parent="256" name="git_path">
+    <column id="448" parent="257" name="git_path">
       <Position>8</Position>
-      <DataType>varchar(80)|0s</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="420" parent="256" name="note">
+    <column id="449" parent="257" name="note">
       <Position>9</Position>
       <DataType>varchar(300)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="421" parent="256" name="PRIMARY">
+    <column id="450" parent="257" name="domain">
+      <Position>10</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="451" parent="257" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="452" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="422" parent="257" name="id">
+    <key id="453" parent="257" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="454" parent="258" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="423" parent="257" name="teamprojt_id">
+    <column id="455" parent="258" name="teamprojt_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="424" parent="257" name="user_id">
+    <column id="456" parent="258" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="425" parent="257" name="web_teamprojt_developer_teamprojt_id_user_id_05133230_uniq">
+    <index id="457" parent="258" name="web_teamprojt_boss_teamprojt_id_user_id_b851276e_uniq">
       <ColNames>teamprojt_id
 user_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="426" parent="257" name="web_teamprojt_developer_user_id_98ad9643_fk_web_user_id">
+    <index id="458" parent="258" name="web_teamprojt_boss_user_id_5bf8b5c3_fk_web_user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="427" parent="257" name="PRIMARY">
+    <key id="459" parent="258" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="428" parent="257" name="web_teamprojt_developer_teamprojt_id_user_id_05133230_uniq">
+    <key id="460" parent="258" name="web_teamprojt_boss_teamprojt_id_user_id_b851276e_uniq">
+      <ColNames>teamprojt_id
+user_id</ColNames>
+      <UnderlyingIndexName>web_teamprojt_boss_teamprojt_id_user_id_b851276e_uniq</UnderlyingIndexName>
+    </key>
+    <foreign-key id="461" parent="258" name="web_teamprojt_boss_teamprojt_id_91fc2850_fk_web_teamprojt_id">
+      <ColNames>teamprojt_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_teamprojt</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="462" parent="258" name="web_teamprojt_boss_user_id_5bf8b5c3_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>issue</RefSchemaName>
+      <RefTableName>web_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="463" parent="259" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="464" parent="259" name="teamprojt_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="465" parent="259" name="user_id">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="466" parent="259" name="web_teamprojt_developer_teamprojt_id_user_id_05133230_uniq">
+      <ColNames>teamprojt_id
+user_id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="467" parent="259" name="web_teamprojt_developer_user_id_98ad9643_fk_web_user_id">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="468" parent="259" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="469" parent="259" name="web_teamprojt_developer_teamprojt_id_user_id_05133230_uniq">
       <ColNames>teamprojt_id
 user_id</ColNames>
       <UnderlyingIndexName>web_teamprojt_developer_teamprojt_id_user_id_05133230_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="429" parent="257" name="web_teamprojt_develo_teamprojt_id_e7514de4_fk_web_teamp">
+    <foreign-key id="470" parent="259" name="web_teamprojt_develo_teamprojt_id_e7514de4_fk_web_teamp">
       <ColNames>teamprojt_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_teamprojt</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="430" parent="257" name="web_teamprojt_developer_user_id_98ad9643_fk_web_user_id">
+    <foreign-key id="471" parent="259" name="web_teamprojt_developer_user_id_98ad9643_fk_web_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="431" parent="258" name="id">
+    <column id="472" parent="260" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="432" parent="258" name="teamprojt_id">
+    <column id="473" parent="260" name="teamprojt_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="433" parent="258" name="host_id">
+    <column id="474" parent="260" name="host_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="434" parent="258" name="web_teamprojt_nginx_host_teamprojt_id_host_id_ab346c8c_uniq">
+    <index id="475" parent="260" name="web_teamprojt_nginx_host_teamprojt_id_host_id_ab346c8c_uniq">
       <ColNames>teamprojt_id
 host_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="435" parent="258" name="web_teamprojt_nginx_host_host_id_ae34826f_fk_web_host_id">
+    <index id="476" parent="260" name="web_teamprojt_nginx_host_host_id_ae34826f_fk_web_host_id">
       <ColNames>host_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="436" parent="258" name="PRIMARY">
+    <key id="477" parent="260" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="437" parent="258" name="web_teamprojt_nginx_host_teamprojt_id_host_id_ab346c8c_uniq">
+    <key id="478" parent="260" name="web_teamprojt_nginx_host_teamprojt_id_host_id_ab346c8c_uniq">
       <ColNames>teamprojt_id
 host_id</ColNames>
       <UnderlyingIndexName>web_teamprojt_nginx_host_teamprojt_id_host_id_ab346c8c_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="438" parent="258" name="web_teamprojt_nginx__teamprojt_id_d7b535d3_fk_web_teamp">
+    <foreign-key id="479" parent="260" name="web_teamprojt_nginx__teamprojt_id_d7b535d3_fk_web_teamp">
       <ColNames>teamprojt_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_teamprojt</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="439" parent="258" name="web_teamprojt_nginx_host_host_id_ae34826f_fk_web_host_id">
+    <foreign-key id="480" parent="260" name="web_teamprojt_nginx_host_host_id_ae34826f_fk_web_host_id">
       <ColNames>host_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_host</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="440" parent="259" name="id">
+    <column id="481" parent="261" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="441" parent="259" name="teamprojt_id">
+    <column id="482" parent="261" name="teamprojt_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="442" parent="259" name="user_id">
+    <column id="483" parent="261" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="443" parent="259" name="web_teamprojt_principal_teamprojt_id_user_id_41cc812c_uniq">
+    <index id="484" parent="261" name="web_teamprojt_ops_user_teamprojt_id_user_id_4542833d_uniq">
       <ColNames>teamprojt_id
 user_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="444" parent="259" name="web_teamprojt_principal_user_id_31ba4ad9_fk_web_user_id">
+    <index id="485" parent="261" name="web_teamprojt_ops_user_user_id_4229111c_fk_web_user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="445" parent="259" name="PRIMARY">
+    <key id="486" parent="261" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="446" parent="259" name="web_teamprojt_principal_teamprojt_id_user_id_41cc812c_uniq">
+    <key id="487" parent="261" name="web_teamprojt_ops_user_teamprojt_id_user_id_4542833d_uniq">
       <ColNames>teamprojt_id
 user_id</ColNames>
-      <UnderlyingIndexName>web_teamprojt_principal_teamprojt_id_user_id_41cc812c_uniq</UnderlyingIndexName>
+      <UnderlyingIndexName>web_teamprojt_ops_user_teamprojt_id_user_id_4542833d_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="447" parent="259" name="web_teamprojt_princi_teamprojt_id_f29b7d1f_fk_web_teamp">
+    <foreign-key id="488" parent="261" name="web_teamprojt_ops_user_teamprojt_id_e81f3822_fk_web_teamprojt_id">
       <ColNames>teamprojt_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_teamprojt</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="448" parent="259" name="web_teamprojt_principal_user_id_31ba4ad9_fk_web_user_id">
+    <foreign-key id="489" parent="261" name="web_teamprojt_ops_user_user_id_4229111c_fk_web_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="449" parent="260" name="id">
+    <column id="490" parent="262" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="450" parent="260" name="teamprojt_id">
+    <column id="491" parent="262" name="teamprojt_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="451" parent="260" name="host_id">
+    <column id="492" parent="262" name="host_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="452" parent="260" name="web_teamprojt_server_host_teamprojt_id_host_id_a3996875_uniq">
+    <index id="493" parent="262" name="web_teamprojt_server_host_teamprojt_id_host_id_a3996875_uniq">
       <ColNames>teamprojt_id
 host_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="453" parent="260" name="web_teamprojt_server_host_host_id_c3f319c1_fk_web_host_id">
+    <index id="494" parent="262" name="web_teamprojt_server_host_host_id_c3f319c1_fk_web_host_id">
       <ColNames>host_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="454" parent="260" name="PRIMARY">
+    <key id="495" parent="262" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="455" parent="260" name="web_teamprojt_server_host_teamprojt_id_host_id_a3996875_uniq">
+    <key id="496" parent="262" name="web_teamprojt_server_host_teamprojt_id_host_id_a3996875_uniq">
       <ColNames>teamprojt_id
 host_id</ColNames>
       <UnderlyingIndexName>web_teamprojt_server_host_teamprojt_id_host_id_a3996875_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="456" parent="260" name="web_teamprojt_server_teamprojt_id_e030d728_fk_web_teamp">
+    <foreign-key id="497" parent="262" name="web_teamprojt_server_teamprojt_id_e030d728_fk_web_teamp">
       <ColNames>teamprojt_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_teamprojt</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="457" parent="260" name="web_teamprojt_server_host_host_id_c3f319c1_fk_web_host_id">
+    <foreign-key id="498" parent="262" name="web_teamprojt_server_host_host_id_c3f319c1_fk_web_host_id">
       <ColNames>host_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_host</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="458" parent="261" name="id">
+    <column id="499" parent="263" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="459" parent="261" name="teamprojt_id">
+    <column id="500" parent="263" name="teamprojt_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="460" parent="261" name="user_id">
+    <column id="501" parent="263" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="461" parent="261" name="web_teamprojt_tester_teamprojt_id_user_id_767b8276_uniq">
+    <index id="502" parent="263" name="web_teamprojt_tester_teamprojt_id_user_id_767b8276_uniq">
       <ColNames>teamprojt_id
 user_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="462" parent="261" name="web_teamprojt_tester_user_id_db9755a6_fk_web_user_id">
+    <index id="503" parent="263" name="web_teamprojt_tester_user_id_db9755a6_fk_web_user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="463" parent="261" name="PRIMARY">
+    <key id="504" parent="263" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="464" parent="261" name="web_teamprojt_tester_teamprojt_id_user_id_767b8276_uniq">
+    <key id="505" parent="263" name="web_teamprojt_tester_teamprojt_id_user_id_767b8276_uniq">
       <ColNames>teamprojt_id
 user_id</ColNames>
       <UnderlyingIndexName>web_teamprojt_tester_teamprojt_id_user_id_767b8276_uniq</UnderlyingIndexName>
     </key>
-    <foreign-key id="465" parent="261" name="web_teamprojt_tester_teamprojt_id_799c9ff8_fk_web_teamprojt_id">
+    <foreign-key id="506" parent="263" name="web_teamprojt_tester_teamprojt_id_799c9ff8_fk_web_teamprojt_id">
       <ColNames>teamprojt_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_teamprojt</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="466" parent="261" name="web_teamprojt_tester_user_id_db9755a6_fk_web_user_id">
+    <foreign-key id="507" parent="263" name="web_teamprojt_tester_user_id_db9755a6_fk_web_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>issue</RefSchemaName>
       <RefTableName>web_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="467" parent="262" name="id">
+    <column id="508" parent="264" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="468" parent="262" name="username">
+    <column id="509" parent="264" name="username">
       <Position>2</Position>
-      <DataType>varchar(15)|0s</DataType>
+      <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="469" parent="262" name="password">
+    <column id="510" parent="264" name="password">
       <Position>3</Position>
       <DataType>varchar(18)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="470" parent="262" name="email">
+    <column id="511" parent="264" name="role">
       <Position>4</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="512" parent="264" name="email">
+      <Position>5</Position>
       <DataType>varchar(254)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="471" parent="262" name="department">
-      <Position>5</Position>
+    <column id="513" parent="264" name="department">
+      <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="472" parent="262" name="create_time">
-      <Position>6</Position>
+    <column id="514" parent="264" name="phone">
+      <Position>7</Position>
+      <DataType>varchar(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="515" parent="264" name="is_admin">
+      <Position>8</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="516" parent="264" name="create_time">
+      <Position>9</Position>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="473" parent="262" name="email">
+    <index id="517" parent="264" name="email">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="474" parent="262" name="PRIMARY">
+    <key id="518" parent="264" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="475" parent="262" name="email">
+    <key id="519" parent="264" name="email">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="476" parent="263" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="477" parent="263" name="user_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="478" parent="263" name="role_id">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="479" parent="263" name="web_user_role_user_id_role_id_96549124_uniq">
-      <ColNames>user_id
-role_id</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="480" parent="263" name="web_user_role_role_id_95923cf1_fk_web_role_id">
-      <ColNames>role_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="481" parent="263" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="482" parent="263" name="web_user_role_user_id_role_id_96549124_uniq">
-      <ColNames>user_id
-role_id</ColNames>
-      <UnderlyingIndexName>web_user_role_user_id_role_id_96549124_uniq</UnderlyingIndexName>
-    </key>
-    <foreign-key id="483" parent="263" name="web_user_role_user_id_d9abced1_fk_web_user_id">
-      <ColNames>user_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="484" parent="263" name="web_user_role_role_id_95923cf1_fk_web_role_id">
-      <ColNames>role_id</ColNames>
-      <RefSchemaName>issue</RefSchemaName>
-      <RefTableName>web_role</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
   </database-model>
 </dataSource>
