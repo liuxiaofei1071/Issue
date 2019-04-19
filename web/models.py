@@ -22,7 +22,7 @@ class User(models.Model):
     )
 
     username = models.CharField('用户名',max_length=150)
-    password = models.CharField(max_length=18)
+    password = models.CharField('密码',max_length=18)
     role = models.CharField(verbose_name='角色',choices=(('0','开发'),('1','测试'),('2','运维')),default='0',max_length=10)
     email = models.EmailField(max_length=254,unique=True)
     department = models.CharField('部门',choices=departments_choices,max_length=20)
@@ -153,7 +153,7 @@ class Init(models.Model):
     def __str__(self):
         return self.name
 
-#发布表
+#更新表
 class Issue(models.Model):
 
     # 备份状态
@@ -164,9 +164,8 @@ class Issue(models.Model):
 
     team = models.ForeignKey('TeamProjt',verbose_name='发布项目')
     user = models.ForeignKey('User',verbose_name='发布人')
-    type = models.CharField('发布类型',max_length=50,choices=(('0','文件'),('1','git')),default='0')
-    status =models.CharField('发布状态',choices=issue_status_choices,max_length=64,default='0')
-    file_dir = models.CharField('部署发布系统',max_length=50)
+    type = models.CharField('更新类型',max_length=50,choices=(('0','文件'),('1','git')),default='0')
+    status =models.CharField('更新状态',choices=issue_status_choices,max_length=64,default='0')
     backup = models.CharField('备份情况',choices=backups_status_choiecs,max_length=12,default='0')
     backup_path = models.CharField('备份文件地址',max_length=300,null=True,blank=True)
     upload_path = models.CharField('上传文件地址',max_length=300,null=True,blank=True)
@@ -178,10 +177,10 @@ class Issue(models.Model):
 #主机发布表
 class HostIssue(models.Model):
     host = models.ForeignKey('Host',verbose_name='发布机器')
-    issue = models.ForeignKey('Issue',verbose_name='发布信息')
+    issue = models.ForeignKey('Issue',verbose_name='更新')
     team = models.ForeignKey('TeamProjt',verbose_name='发布项目')
     time = models.DateTimeField('主机发布时间',max_length=30)
-    status = models.CharField('主机发布状态',choices=issue_status_choices,max_length=64,default='0',)
+    status = models.CharField('更新状态',choices=issue_status_choices,max_length=64,default='0',)
 
 
 
