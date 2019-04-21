@@ -126,12 +126,12 @@ class Command(models.Model):
 class Cron(models.Model):
     name = models.CharField('计划名称',max_length=32,unique=True,)
     time = models.CharField('计划任务执行时间',max_length=32)
-    host_list = models.CharField('执行机器', max_length=200)
-    job = models.CharField('任务',max_length=120)
-    note = models.CharField('备注',max_length=300,null=True,blank=True)
-    user = models.ForeignKey('User',verbose_name='创建者')
-    linux_user = models.CharField(verbose_name='执行人',null=True,blank=True,default='root',max_length=30)
+    host_list = models.ManyToManyField(Host, max_length=200,verbose_name='执行机器')
+    job = models.CharField('计划',max_length=120)
+    user = models.CharField(verbose_name='执行人',null=True,blank=True,default='root',max_length=30)
+    create_user = models.ForeignKey('User', verbose_name='创建者')
     create_time = models.DateTimeField('创建时间',auto_now_add=True)
+    note = models.CharField('计划描述', max_length=300, null=True, blank=True)
 
     class Meta:
         ordering = ['-create_time']

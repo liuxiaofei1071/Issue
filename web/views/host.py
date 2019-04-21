@@ -13,7 +13,7 @@ def host_list(request):
     page = Pagination(request.GET.get('page'),hosts.count(),request.GET.copy(),5)
 
     return TemplateResponse(request, 'menu/hostlist.html',
-                           {'hosts': hosts[page.start:page.end], 'page_title': '用户列表', 'page_html': page.page_html})
+                           {'hosts': hosts[page.start:page.end], 'page_title': '主机列表', 'page_html': page.page_html})
 
 #新增/编辑主机
 def change_host(request,pk=None):
