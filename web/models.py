@@ -102,7 +102,7 @@ class TeamProjt(models.Model):
     team_status = models.CharField(choices=team_status_choices,verbose_name='项目状态',default='0', max_length=2)
     nginx_conf = models.CharField('nginx配置信息',max_length=254,null=True,blank=True)
     git_path = models.CharField(verbose_name='git地址',max_length=200)
-    project_path = models.CharField(verbose_name='linux项目路径', max_length=200)
+    project_path = models.CharField(verbose_name='项目目录', max_length=200)
     note = models.CharField('备注',max_length=300,null=True,blank=True)
     domain = models.CharField('域名',max_length=100,null=True,blank=True)
 

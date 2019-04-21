@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from web.views import home
-from web.views import user,host,cron
+from web.views import user,host,cron,team
 
 
 
@@ -23,5 +23,11 @@ urlpatterns = [
     url(r'^add_cron/', cron.change_cron,name='add_cron'),
     url(r'^edit_cron/(?P<pk>\d+)', cron.change_cron,name='edit_cron'),
     url(r'^del_cron/(\d+)', cron.del_cron,name='del_cron'),
+
+    #项目url
+    url(r'^team_list/', team.team_list, name='team_list'),
+    url(r'^add_team/', team.change_team, name='add_team'),
+    url(r'^edit_team/(?P<pk>\d+)', team.change_team, name='edit_team'),
+    url(r'^del_team/(\d+)', team.del_team, name='del_team'),
 
 ]

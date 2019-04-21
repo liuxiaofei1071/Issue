@@ -2,6 +2,7 @@ from django import forms
 from web.models import User
 from web.models import Host
 from web.models import Cron
+from web.models import TeamProjt
 from django.forms import ModelForm
 
 #定义bootstrap样式
@@ -61,4 +62,20 @@ class CronForm(BootstranpModelForm):
         model = Cron
         exclude = ["create_user", "time"]
 
+#主机Form
+class TeamForm(BootstranpModelForm):
 
+    class Meta:
+        model = TeamProjt
+        fields = "__all__"
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if self.instance.pk:
+            name_obj = Host.objects.filter(name=name).exclude(pk=self.instance.pk)
+        else:
+            name_obj = Host.objects.filter(name=name)
+
+        if name_obj:
+            raise forms.ValidationError('项目已存在')
+        return name
