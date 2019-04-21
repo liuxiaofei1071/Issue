@@ -19,7 +19,7 @@ jQuery(document).ready(function () {
     cancelButton: 'Cancel',   // Text for the cancel button
     confirm: null,            // Function to execute when clicking the submit button. By default jBox will use the onclick or href attribute in that order if found
     cancel: null,             // Function to execute when clicking the cancel button
-    closeOnConfirm: true,     // Close jBox when the user clicks the confirm button
+    closeOnConfirm: true,     // Close jBox when the menu clicks the confirm button
     target: window,
     addClass: 'jBox-Modal',
     fixed: true,

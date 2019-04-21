@@ -12,8 +12,8 @@ def user_list(request):
    users = User.objects.filter(username__contains=search)
    page = Pagination(request.GET.get('page'),users.count(),request.GET.copy(),5)
 
-   return TemplateResponse(request,'user/userlist.html',
-                 {'users':users[page.start:page.end],'page_title':'用户列表','page_html':page.page_html})
+   return TemplateResponse(request, 'menu/userlist.html',
+                           {'users':users[page.start:page.end],'page_title':'用户列表','page_html':page.page_html})
 
 
 
@@ -29,7 +29,7 @@ def change_user(request,pk=None):
          return JsonResponse({'status':0,'msg':f'{title}成功'})
       else:
          return JsonResponse({'status':1,'msg':f'{title}失败,失败的原因是{form_obj.errors}'})
-   return render(request, 'auth/form.html', {'form_obj':form_obj,"pk":pk})
+   return render(request, 'create/user_create.html', {'form_obj':form_obj, "pk":pk})
 
 
 

@@ -450,7 +450,7 @@
 				options.supportPointer && _on(ownerDocument, 'pointercancel', _this._onDrop);
 
 				if (options.delay) {
-					// If the user moves the pointer or let go the click or touch
+					// If the menu moves the pointer or let go the click or touch
 					// before the delay has been reached:
 					// disable the delayed drag
 					_on(ownerDocument, 'mouseup', _this._disableDelayedDrag);

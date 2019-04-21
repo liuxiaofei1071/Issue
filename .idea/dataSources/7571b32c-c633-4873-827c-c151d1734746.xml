@@ -22,7 +22,7 @@
     <schema id="6" parent="1" name="issue">
       <Current>1</Current>
       <Visible>1</Visible>
-      <Collation>latin1_swedish_ci</Collation>
+      <Collation>gb2312_chinese_ci</Collation>
     </schema>
     <schema id="7" parent="1" name="mine">
       <Collation>utf8_general_ci</Collation>
@@ -1602,13 +1602,13 @@ model</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="251" name="hosts_status">
+    <column id="377" parent="251" name="status">
       <Position>7</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="378" parent="251" name="hosts_environment">
+    <column id="378" parent="251" name="environment">
       <Position>8</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1985,13 +1985,13 @@ host_id</ColNames>
       <DataType>varchar(254)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="446" parent="257" name="project_path">
+    <column id="446" parent="257" name="git_path">
       <Position>7</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="447" parent="257" name="git_path">
+    <column id="447" parent="257" name="project_path">
       <Position>8</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>

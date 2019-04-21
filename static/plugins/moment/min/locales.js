@@ -9073,7 +9073,7 @@ moment.defineLocale('uk', {
         y : 'рік',
         yy : relativeTimeWithPlural$4
     },
-    // M. E.: those two are virtually unused but a user might want to implement them for his/her website for some reason
+    // M. E.: those two are virtually unused but a menu might want to implement them for his/her website for some reason
     meridiemParse: /ночі|ранку|дня|вечора/,
     isPM: function (input) {
         return /^(дня|вечора)$/.test(input);

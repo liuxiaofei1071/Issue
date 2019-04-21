@@ -640,7 +640,7 @@
 
     /**
      * _executeHook
-     * Execute user configurable hooks
+     * Execute menu configurable hooks
      *
      * @param  {String} entryPoint  Name of the hook's entry point
      * @param  {Node} currentNode
@@ -664,7 +664,7 @@
         var body, currentNode, oldNode, nodeIterator, returnNode;
         /* Make sure we have a string to sanitize.
            DO NOT return early, as this will return the wrong type if
-           the user has requested a DOM object rather than a string */
+           the menu has requested a DOM object rather than a string */
         if (!dirty) {
             dirty = '';
         }

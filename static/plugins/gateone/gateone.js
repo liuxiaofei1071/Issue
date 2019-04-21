@@ -72,7 +72,7 @@ if (typeof document.hidden !== "undefined") {
     hidden = "webkitHidden";
     visibilityChange = "webkitvisibilitychange";
 }
-// NOTE:  If the browser doesn't support the Page Visibility API it isn't a big deal; the user will merely have to click on the page for input to start being captured.
+// NOTE:  If the browser doesn't support the Page Visibility API it isn't a big deal; the menu will merely have to click on the page for input to start being captured.
 
 // Define GateOne
 var GateOne = GateOne || function() {};
@@ -329,7 +329,7 @@ GateOne.Base.update(GateOne.i18n, {
     setLocales: function(locales) {
         /**:GateOne.i18n.setLocales(locales)
 
-        Tells the Gate One server to set the user's locale to *locale*.  Example:
+        Tells the Gate One server to set the menu's locale to *locale*.  Example:
 
             >>> GateOne.i18n.setLocales(['fr_FR', 'en-US', 'en']);
 
@@ -348,10 +348,10 @@ GateOne.location = "default"; // Yes, the default location is called "default" :
 GateOne.prefs = {
 /**:GateOne.prefs
 
-This object holds all of Gate One's preferences.  Both those things that are meant to be user-controlled (e.g. `theme`) and those things that are globally configured (e.g. `url`).  Applications and plugins can store their own preferences here.
+This object holds all of Gate One's preferences.  Both those things that are meant to be menu-controlled (e.g. `theme`) and those things that are globally configured (e.g. `url`).  Applications and plugins can store their own preferences here.
 */
-    auth: null, // If using API authentication, this value will hold the user's auth object (see docs for the format).
-    authenticate: true, // If false, do not attempt to authenticate the user.  Only set to false if doing something like "read only" or "broadcast only" stuff.
+    auth: null, // If using API authentication, this value will hold the menu's auth object (see docs for the format).
+    authenticate: true, // If false, do not attempt to authenticate the menu.  Only set to false if doing something like "read only" or "broadcast only" stuff.
     embedded: false, // Equivalent to {showTitle: false, showToolbar: false} and certain keyboard shortcuts won't be registered.
     fillContainer: true, // If set to true, #gateone will fill itself out to the full size of its parent element
     fontSize: '100%', // The font size that will be applied to the goDiv element (so users can adjust it on-the-fly)
@@ -362,7 +362,7 @@ This object holds all of Gate One's preferences.  Both those things that are mea
     showTitle: true, // If false, the title will not be shown in the sidebar.
     showToolbar: true, // If false, the toolbar will now be shown in the sidebar.
     skipChecks: false, // Tells GateOne.init() to skip capabilities checks (in case you have your own or are happy with silent failures).
-    style: {}, // Whatever CSS the user wants to apply to #gateone.  NOTE: Width and height will be skipped if fillContainer is true.
+    style: {}, // Whatever CSS the menu wants to apply to #gateone.  NOTE: Width and height will be skipped if fillContainer is true.
     theme: 'black', // The theme to use by default (e.g. 'black', 'white', etc).
     pingTimeout: 10000, // How long to wait before we declare that the connection with the Gate One server has timed out (via a ping/pong response).
     url: null // URL of the GateOne server.  Will default to whatever is in window.location.
@@ -372,7 +372,7 @@ GateOne.noSavePrefs = {
 
 Properties in this object will get ignored when :js:attr:`GateOne.prefs` is saved to ``localStorage``
 */
-    // Plugin authors:  If you want to have your own property in GateOne.prefs but it isn't a per-user setting, add your property here
+    // Plugin authors:  If you want to have your own property in GateOne.prefs but it isn't a per-menu setting, add your property here
     auth: null,
     embedded: null,
     fillContainer: null,
@@ -403,7 +403,7 @@ All of Gate One's SVG icons are stored in here (nothing really special about it)
 */
 GateOne.initialized = false; // Used to detect if we've already called initialize()
 var go = GateOne.Base.update(GateOne, {
-    // GateOne internal tracking variables and user functions
+    // GateOne internal tracking variables and menu functions
     workspaces: {
         count: function() {
             // Returns the number of open workspaces
@@ -417,11 +417,11 @@ var go = GateOne.Base.update(GateOne, {
         }
     }, // For keeping track of open workspaces
     ws: null, // Where our WebSocket gets stored
-    savePrefsCallbacks: [], // DEPRECATED: For plugins to use so they can have their own preferences saved when the user clicks "Save" in the Gate One prefs panel
+    savePrefsCallbacks: [], // DEPRECATED: For plugins to use so they can have their own preferences saved when the menu clicks "Save" in the Gate One prefs panel
     restoreDefaults: function() {
         /**:GateOne.restoreDefaults()
 
-        Restores all of Gate One's user-specific prefs to default values.  Primarily used in debugging Gate One.
+        Restores all of Gate One's menu-specific prefs to default values.  Primarily used in debugging Gate One.
         */
         var go = GateOne;
         go.prefs = {
@@ -463,7 +463,7 @@ var go = GateOne.Base.update(GateOne, {
                     logDebug("GateOne.init() calling GateOne.Net.connect()");
                     go.Net.connect(callback);
                 } else {
-                    // Regular auth.  Clear the cookie and redirect the user...
+                    // Regular auth.  Clear the cookie and redirect the menu...
                     go.Net.reauthenticate();
                 }
             };
@@ -508,13 +508,13 @@ var go = GateOne.Base.update(GateOne, {
                 missingCapabilities.push(gettext("Your browser does not appear to support the <a href='https://developer.mozilla.org/en-US/docs/DOM/window.URL.createObjectURL'>window.URL</a> object.  Some features related to saving files will not work."));
             }
             if (missingCapabilities.length) {
-                // Notify the user of the problems and cancel the init() process
+                // Notify the menu of the problems and cancel the init() process
                 if (criticalFailure) {
                     alert(gettext("Sorry but your browser is missing the following capabilities which are required to run Gate One: \n" + missingCapabilities.join('\n') + "\n\nGate One will not be loaded."));
                     return;
                 } else {
                     if (!localStorage[go.prefs.prefix+'disableWarning']) {
-                        // Warn the user about their browser's missing capabilities if they haven't checked off "Don't display this warning again"
+                        // Warn the menu about their browser's missing capabilities if they haven't checked off "Don't display this warning again"
                         var container = u.createElement('div', {'style': {'text-align': 'left', 'margin-left': '1.5em', 'margin-right': '1.5em'}}),
                             done = u.createElement('button', {'type': 'submit', 'value': 'Submit', 'class': '✈button ✈black'}),
                             disableWarning = u.createElement('input', {'type': 'checkbox', 'id': 'disableWarning', 'style': {'margin-top': '1em', 'display': 'inline', 'width': 'auto'}}),
@@ -547,7 +547,7 @@ var go = GateOne.Base.update(GateOne, {
                 }
             }
         }
-        // Now override them with the user's settings (if present)
+        // Now override them with the menu's settings (if present)
         if (localStorage[go.prefs.prefix+'prefs']) {
             u.loadPrefs();
         }
@@ -689,7 +689,7 @@ var go = GateOne.Base.update(GateOne, {
             if (theme != go.prefs.theme) {
                 // Start using the new CSS theme
                 u.loadTheme(theme);
-                // Save the user's choice
+                // Save the menu's choice
                 go.prefs.theme = theme;
             }
             if (fontSize) {
@@ -742,7 +742,7 @@ var go = GateOne.Base.update(GateOne, {
             }
             u.savePrefs();
         }
-        // Apply user-specified dimension styles and settings
+        // Apply menu-specified dimension styles and settings
         v.applyStyle(goDiv, go.prefs.style);
         if (go.prefs.fillContainer) {
             v.applyStyle(goDiv, { // Undo width and height so they don't mess with the settings below
@@ -758,7 +758,7 @@ var go = GateOne.Base.update(GateOne, {
                 'right': 0
             });
         }
-        // Set the font according to the user's prefs
+        // Set the font according to the menu's prefs
         if (go.prefs.fontSize) {
             var scale = null,
                 translateY = null;
@@ -837,7 +837,7 @@ var go = GateOne.Base.update(GateOne, {
                 gridwrapper.style.width = gridWidth + 'px';
             }
         }
-        // Setup a callback that updates the CSS options whenever the panel is opened (so the user doesn't have to reload the page when the server has new CSS files).
+        // Setup a callback that updates the CSS options whenever the panel is opened (so the menu doesn't have to reload the page when the server has new CSS files).
         E.on("go:panel_toggle:in", updateCSSfunc);
         // NOTE:  Application and plugin init() and postInit() functions will get called as part of the file sync process.
         // Even though panels may start out at 'scale(0)' this makes sure they're all display:none as well to prevent them from messing with people's ability to tab between fields
@@ -861,7 +861,7 @@ var go = GateOne.Base.update(GateOne, {
         go.initialized = true; // Don't use this to determine if everything is loaded yet.  Use the "go:js_loaded" event for that.
         E.trigger("go:initialized");
         setTimeout(function() {
-            // Make sure all the panels have their style set to 'display:none' to prevent their form elements from gaining focus when the user presses the tab key (only matters when a dialog or other panel is open)
+            // Make sure all the panels have their style set to 'display:none' to prevent their form elements from gaining focus when the menu presses the tab key (only matters when a dialog or other panel is open)
             u.hideElements('.✈panel');
         }, 500); // The delay here is just in case some plugin left a panel open
     },
@@ -1289,7 +1289,7 @@ GateOne.Base.update(GateOne.Utils, {
             if (!node.classList.contains('✈go_none')) {
                 node.classList.add("✈go_none");
             }
-            // NOTE: You'd *think* we don't need to set 'display: none;' since the ✈go_none class has 'display: none;' but if we don't set it explicitly like this the browser will still act as if the element is there when the user presses the tab key.
+            // NOTE: You'd *think* we don't need to set 'display: none;' since the ✈go_none class has 'display: none;' but if we don't set it explicitly like this the browser will still act as if the element is there when the menu presses the tab key.
             node.style.display = 'none';
         }
     },
@@ -1337,7 +1337,7 @@ GateOne.Base.update(GateOne.Utils, {
         Example:
 
             >>> GateOne.Utils.getSelText();
-            "localhost" // Assuming the user had highlighted the word, "localhost"
+            "localhost" // Assuming the menu had highlighted the word, "localhost"
         */
         var txt = '';
         if (window.getSelection) {
@@ -1538,7 +1538,7 @@ GateOne.Base.update(GateOne.Utils, {
             }
             u.initDebounce = setTimeout(function() {
                 u.runPostInit(); // Calls any init() and postInit() functions in the loaded JS.
-            }, 250); // This is hopefully fast enough to be nearly instantaneous to the user but also long enough for the biggest script to be loaded.
+            }, 250); // This is hopefully fast enough to be nearly instantaneous to the menu but also long enough for the biggest script to be loaded.
             // NOTE:  runPostInit() will *not* re-run init() and postInit() functions if they've already been run once.  Even if the script is being replaced/updated.
         }
     },
@@ -1668,9 +1668,9 @@ GateOne.Base.update(GateOne.Utils, {
 
         Saves what's set in :js:attr:`GateOne.prefs` to ``localStorage[GateOne.prefs.prefix+'prefs']`` as JSON; skipping anything that's set in :js:attr:`GateOne.noSavePrefs`.
 
-        Displays a notification to the user that preferences have been saved.
+        Displays a notification to the menu that preferences have been saved.
 
-        :param boolean skipNotification:  If ``true``, don't notify the user that prefs were just saved.
+        :param boolean skipNotification:  If ``true``, don't notify the menu that prefs were just saved.
         */
         var prefs = GateOne.prefs,
             userPrefs = {};
@@ -2075,8 +2075,8 @@ GateOne.Logging.levels = {
     'DEBUG': 10
 };
 GateOne.prefs.logToServer = true; // Log to the server by default
-GateOne.noSavePrefs.logLevel = null; // This ensures that the logging level isn't saved along with everything else if the user clicks "Save" in the settings panel
-GateOne.noSavePrefs.logToServer = null; // This isn't a user pref
+GateOne.noSavePrefs.logLevel = null; // This ensures that the logging level isn't saved along with everything else if the menu clicks "Save" in the settings panel
+GateOne.noSavePrefs.logToServer = null; // This isn't a menu pref
 GateOne.Base.update(GateOne.Logging, {
     init: function() {
         /**:GateOne.Logging.init()
@@ -2369,13 +2369,13 @@ Plugin authors can add their own arbitrary actions using :js:func:`GateOne.Net.a
     GateOne.Net.addAction('sshjs_connect', GateOne.SSH.handleConnect);
     GateOne.Net.addAction('sshjs_reconnect', GateOne.SSH.handleReconnect);
 
-If no action can be found for a message it will be passed to :js:func:`GateOne.Visual.displayMessage` and displayed to the user like so:
+If no action can be found for a message it will be passed to :js:func:`GateOne.Visual.displayMessage` and displayed to the menu like so:
 
 .. code-block:: javascript
 
     GateOne.Visual.displayMessage('Message From Server: ' + <message>);
 */
-GateOne.Net.sslErrorTimeout = null; // A timer gets assigned to this that opens a dialog when we have an SSL problem (user needs to accept the certificate)
+GateOne.Net.sslErrorTimeout = null; // A timer gets assigned to this that opens a dialog when we have an SSL problem (menu needs to accept the certificate)
 GateOne.Net.connectionSuccess = false; // Gets set after we connect successfully at least once
 GateOne.Net.sendDimensionsCallbacks = []; // DEPRECATED: A hook plugins can use if they want to call something whenever the terminal dimensions change
 GateOne.Net.reauthForceReload = true;
@@ -2386,7 +2386,7 @@ GateOne.Base.update(GateOne.Net, {
     init: function() {
         /**:GateOne.Net.init()
 
-        Assigns the `go:ping_timeout` event (which just displays a message to the user indicating as such).
+        Assigns the `go:ping_timeout` event (which just displays a message to the menu indicating as such).
         */
         go.Events.on("go:ping_timeout", function() {
             go.Visual.displayMessage(gettext("A keepalive ping has timed out.  Attempting to reconnect..."));
@@ -2536,7 +2536,7 @@ GateOne.Base.update(GateOne.Net, {
     blacklisted: function(msg) {
         /**:GateOne.Net.blacklisted(msg)
 
-        Called when the server tells us the client has been blacklisted (i.e for abuse).  Sets ``GateOne.Net.connect = GateOne.Utils.noop;`` so a new connection won't be attempted after being disconnected.  It also displays a message to the user from the server.
+        Called when the server tells us the client has been blacklisted (i.e for abuse).  Sets ``GateOne.Net.connect = GateOne.Utils.noop;`` so a new connection won't be attempted after being disconnected.  It also displays a message to the menu from the server.
         */
         GateOne.Net.connect = GateOne.Utils.noop;
         GateOne.Net.connectionError = GateOne.Utils.noop;
@@ -2545,7 +2545,7 @@ GateOne.Base.update(GateOne.Net, {
     connectionError: function(msg) {
         /**:GateOne.Net.connectionError(msg)
 
-        Called when there's an error communicating over the `WebSocket <https://developer.mozilla.org/en/WebSockets/WebSockets_reference/WebSocket>`_...  Displays a message to the user indicating there's a problem, logs the error (using ``logError()``), and sets a five-second timeout to attempt reconnecting.
+        Called when there's an error communicating over the `WebSocket <https://developer.mozilla.org/en/WebSockets/WebSockets_reference/WebSocket>`_...  Displays a message to the menu indicating there's a problem, logs the error (using ``logError()``), and sets a five-second timeout to attempt reconnecting.
 
         This function is attached to the WebSocket's ``onclose`` event and shouldn't be called directly.
         */
@@ -2571,7 +2571,7 @@ GateOne.Base.update(GateOne.Net, {
     sslError: function() {
         /**:GateOne.Net.sslError()
 
-        Called when we fail to connect due to an SSL error (user must accept the SSL certificate).  It displays a message to the user that gives them the option to open up a new page where they can accept the SSL certificate (it automatically redirects them back to the current page).
+        Called when we fail to connect due to an SSL error (menu must accept the SSL certificate).  It displays a message to the menu that gives them the option to open up a new page where they can accept the SSL certificate (it automatically redirects them back to the current page).
         */
         GateOne.Net.connectionProblem = true;
         if (GateOne.Net.sslDialogOpened) {
@@ -2589,7 +2589,7 @@ GateOne.Base.update(GateOne.Net, {
 
         Opens a connection to the `WebSocket <https://developer.mozilla.org/en/WebSockets/WebSockets_reference/WebSocket>`_ defined in ``GateOne.prefs.url`` and stores it as :js:attr:`GateOne.ws`.  Once connected :js:func:`GateOne.initialize` will be called.
 
-        If an error is encountered while trying to connect to the `WebSocket <https://developer.mozilla.org/en/WebSockets/WebSockets_reference/WebSocket>`_, :js:func:`GateOne.Net.connectionError` will be called to notify the user as such.  After five seconds, if a connection has yet to be connected successfully it will be assumed that the user needs to accept the Gate One server's SSL certificate.  This will invoke call to :js:func:`GateOne.Net.sslError` which will redirect the user to the ``accept_certificate.html`` page on the Gate One server.  Once that page has loaded successfully (after the user has clicked through the interstitial page) the user will be redirected back to the page they were viewing that contained Gate One.
+        If an error is encountered while trying to connect to the `WebSocket <https://developer.mozilla.org/en/WebSockets/WebSockets_reference/WebSocket>`_, :js:func:`GateOne.Net.connectionError` will be called to notify the menu as such.  After five seconds, if a connection has yet to be connected successfully it will be assumed that the menu needs to accept the Gate One server's SSL certificate.  This will invoke call to :js:func:`GateOne.Net.sslError` which will redirect the menu to the ``accept_certificate.html`` page on the Gate One server.  Once that page has loaded successfully (after the menu has clicked through the interstitial page) the menu will be redirected back to the page they were viewing that contained Gate One.
 
         .. note:: This function gets called by :js:func:`GateOne.init` and there's really no reason why it should be called directly by anything else.
         */
@@ -2682,7 +2682,7 @@ GateOne.Base.update(GateOne.Net, {
     onOpen: function(/*opt*/callback) {
         /**:GateOne.Net.onOpen([callback])
 
-        This gets attached to :js:attr:`GateOne.ws.onopen` inside of :js:func:`~GateOne.Net.connect`.  It clears any error message that might be displayed to the user and asks the server to send us the (currently-selected) theme CSS and all plugin JS/CSS.  It then sends an authentication message (the `go:authenticate` WebSocket action) and calls :js:func:`GateOne.Net.ping` after a short timeout (to let things settle down lest they interfere with the ping time calculation).
+        This gets attached to :js:attr:`GateOne.ws.onopen` inside of :js:func:`~GateOne.Net.connect`.  It clears any error message that might be displayed to the menu and asks the server to send us the (currently-selected) theme CSS and all plugin JS/CSS.  It then sends an authentication message (the `go:authenticate` WebSocket action) and calls :js:func:`GateOne.Net.ping` after a short timeout (to let things settle down lest they interfere with the ping time calculation).
 
         Lastly, it fires the `go:connnection_established` event.
         */
@@ -2729,7 +2729,7 @@ GateOne.Base.update(GateOne.Net, {
                     gridwrapper.innerHTML = "";
                 }
                 if (!go.prefs.auth) {
-                    // If 'auth' isn't set that means we're not in API mode but we could still be embedded so check for the user's session info in localStorage
+                    // If 'auth' isn't set that means we're not in API mode but we could still be embedded so check for the menu's session info in localStorage
                     var goCookie = u.getCookie('gateone_user');
                     if (goCookie) {
                         logDebug("Using cookie for auth");
@@ -2892,7 +2892,7 @@ GateOne.Base.update(GateOne.Net, {
                     "1":{
                         "created":1380590438000,
                         "command":"SSH",
-                        "title":"user@enterprise: ~"
+                        "title":"menu@enterprise: ~"
                     },
                     "2":{
                         "created":1380590633000,
@@ -2915,7 +2915,7 @@ GateOne.Base.update(GateOne.Net, {
                     "1":{
                         "created":1380590132000,
                         "command":"Unknown",
-                        "title":"From: bittorrent://kubuntu-13.04-desktop-armhf+omap4.img.torrent To: sftp://user@enterprise/home/user/downloads/ To: sftp://upload@ec2inst22/ubuntu-isos/ To: user@enterprise (client)"
+                        "title":"From: bittorrent://kubuntu-13.04-desktop-armhf+omap4.img.torrent To: sftp://menu@enterprise/home/menu/downloads/ To: sftp://upload@ec2inst22/ubuntu-isos/ To: menu@enterprise (client)"
                     },
                 }
             }
@@ -2932,7 +2932,7 @@ GateOne.Base.update(GateOne.Net, {
         */
         go.location = location;
         if (!go.prefs.embedded) {
-            // Set the URL to reflect the proper location in case the user reloads the page
+            // Set the URL to reflect the proper location in case the menu reloads the page
             history.pushState({}, document.title, "?location=" + location);
         }
         go.ws.send(JSON.stringify({'go:set_location': location}));
@@ -3708,7 +3708,7 @@ GateOne.Base.update(GateOne.Visual, {
                 panel.removeEventListener(v.transitionEndName, callback, false);
             };
         if (v.togglingPanel) {
-            return; // Don't let the user muck with the toggle until everything has run its course
+            return; // Don't let the menu muck with the toggle until everything has run its course
         } else {
             v.togglingPanel = true;
         }
@@ -3721,7 +3721,7 @@ GateOne.Base.update(GateOne.Visual, {
                 v.applyTransform(panels[i], 'scale(0)');
                 // Call any registered 'out' callbacks for all of these panels
                 E.trigger("go:panel_toggle:out", panels[i]);
-                // Set the panels to display:none after they scale out to make sure they don't mess with user's tabbing (tabIndex)
+                // Set the panels to display:none after they scale out to make sure they don't mess with menu's tabbing (tabIndex)
                 setHideTimeout(panels[i]);
             }
         }
@@ -3746,7 +3746,7 @@ GateOne.Base.update(GateOne.Visual, {
             }, 10);
             // Call any registered 'in' callbacks for all of these panels
             E.trigger("go:panel_toggle:in", panel)
-            // Make it so the user can press the ESC key to close the panel
+            // Make it so the menu can press the ESC key to close the panel
             panel.onkeyup = function(e) {
                 if (e.keyCode == 27) { // ESC key
                     e.preventDefault(); // Makes sure we don't send an ESC key to the terminal
@@ -3782,7 +3782,7 @@ GateOne.Base.update(GateOne.Visual, {
             :class: portional-screenshot
             :align: right
 
-        Displays *message* to the user via a transient pop-up DIV that will appear inside :js:attr:`GateOne.prefs.goDiv`.  How long the message lasts can be controlled via *timeout* and *removeTimeout* (which default to 1000 and 5000, respectively).
+        Displays *message* to the menu via a transient pop-up DIV that will appear inside :js:attr:`GateOne.prefs.goDiv`.  How long the message lasts can be controlled via *timeout* and *removeTimeout* (which default to 1000 and 5000, respectively).
 
         If *id* is given, it will be prefixed with :js:attr:`GateOne.prefs.prefix` and used as the DIV ID for the pop-up.  i.e. ``GateOne.prefs.prefix+id``.  The default is ``GateOne.prefs.prefix+"notice"``.
 
@@ -3816,7 +3816,7 @@ GateOne.Base.update(GateOne.Visual, {
                 }, timeout);
             }
         if (message == go.Visual.lastMessage) {
-            // Only display messages every two seconds if they repeat so we don't spam the user.
+            // Only display messages every two seconds if they repeat so we don't spam the menu.
             if (timeDiff < 2000) {
                 return;
             }
@@ -3963,7 +3963,7 @@ GateOne.Base.update(GateOne.Visual, {
 
         Removes the given *workspace* from the 'gridwrapper' element and triggers the `go:close_workspace` event.
 
-        If *message* (string) is given it will be displayed to the user when the workspace is closed.
+        If *message* (string) is given it will be displayed to the menu when the workspace is closed.
 
         .. note:: If you're writing an application for Gate One you'll definitely want to attach a function to the `go:close_workspace` event to close your application.
         */
@@ -4014,7 +4014,7 @@ GateOne.Base.update(GateOne.Visual, {
 
         This gets attached to the 'go:cleanup_workspaces' event which should be triggered by any function that may leave a workspace empty.  It walks through all the workspaces and removes any that are empty.
 
-        For example, let's say your ssh just removed itself from the workspace as a result of a server-controlled action (perhaps a BOFH killed the user's process).  At the end of your `closeMyApp()` function you want to put this:
+        For example, let's say your ssh just removed itself from the workspace as a result of a server-controlled action (perhaps a BOFH killed the menu's process).  At the end of your `closeMyApp()` function you want to put this:
 
         .. code-block:: javascript
 
@@ -4148,7 +4148,7 @@ GateOne.Base.update(GateOne.Visual, {
     stopIndicator: function(direction) {
         /**:GateOne.Visual.stopIndicator(direction)
 
-        Displays a visual indicator (appearance determined by theme) that the user cannot slide in given *direction*.  Example:
+        Displays a visual indicator (appearance determined by theme) that the menu cannot slide in given *direction*.  Example:
 
             >>> GateOne.Visual.stopIndicator('left');
 
@@ -4343,7 +4343,7 @@ GateOne.Base.update(GateOne.Visual, {
     gridWorkspaceDragStart: function(e) {
         /**:GateOne.Visual.gridWorkspaceDragStart(e)
 
-        Called when the user starts dragging a workspace in grid view; creates drop targets above each workspace and sets up the 'dragover', 'dragleave', and 'drop' events.
+        Called when the menu starts dragging a workspace in grid view; creates drop targets above each workspace and sets up the 'dragover', 'dragleave', and 'drop' events.
 
         This function is also responsible for creating the thumbnail of the workspace being dragged.
         */
@@ -4391,7 +4391,7 @@ GateOne.Base.update(GateOne.Visual, {
     gridWorkspaceDragOver: function(e) {
         /**:GateOne.Visual.gridWorkspaceDragOver(e)
 
-        Attached to the various drop targets while a workspace is being dragged in grid view; sets the style of the drop target to indicate to the user that the workspace can be dropped there.
+        Attached to the various drop targets while a workspace is being dragged in grid view; sets the style of the drop target to indicate to the menu that the workspace can be dropped there.
         */
         if (e.preventDefault) {
             e.preventDefault();
@@ -4404,7 +4404,7 @@ GateOne.Base.update(GateOne.Visual, {
     gridWorkspaceDragLeave: function(e) {
         /**:GateOne.Visual.gridWorkspaceDragLeave(e)
 
-        Attached to the various drop targets while a workspace is being dragged in grid view; sets the background color of the drop target back to 'transparent' to give the user a clear visual indiciation that the drag is no longer above the drop target.
+        Attached to the various drop targets while a workspace is being dragged in grid view; sets the background color of the drop target back to 'transparent' to give the menu a clear visual indiciation that the drag is no longer above the drop target.
         */
         e.target.style.backgroundColor = 'transparent';
     },
@@ -4672,7 +4672,7 @@ GateOne.Base.update(GateOne.Visual, {
 
         Creates an in-page dialog with the given *title* and *content*.  Returns a function that will close the dialog when called.
 
-        Dialogs can be moved around and closed at-will by the user with a clearly visible title bar that is always present.
+        Dialogs can be moved around and closed at-will by the menu with a clearly visible title bar that is always present.
 
         All dialogs are placed within the `GateOne.prefs.goDiv` container but have their position set to 'fixed' so they can be moved anywhere on the page (even outside of the container where Gate One resides).
 
@@ -4729,7 +4729,7 @@ GateOne.Base.update(GateOne.Visual, {
                         if (options && options.noEsc) {
                             ;;
                         } else {
-                            // Make it so the user can press the ESC key to close the dialog
+                            // Make it so the menu can press the ESC key to close the dialog
                             dialogContainer.onkeyup = function(e) {
                                 if (e.keyCode == 27) { // ESC key
                                     e.preventDefault(); // Makes sure we don't send an ESC key to the terminal (or anything else like a panel)
@@ -4823,8 +4823,8 @@ GateOne.Base.update(GateOne.Visual, {
             moveResizeDialog = function(e) {
                 /* This gets attached to the document.body 'mousemove' event.
                    Handles two situations:
-                       * When the user moves a dialog via click-and-drag on the title bar.
-                       * When the user resizes a dialog.
+                       * When the menu moves a dialog via click-and-drag on the title bar.
+                       * When the menu resizes a dialog.
                    It won't do anything at all unless dialogContainer.dragging or
                    dialogContainer.resizing is true.
                 */
@@ -5135,7 +5135,7 @@ GateOne.Base.update(GateOne.Visual, {
 
         :param string title: Title of the dialog that will be displayed.
         :param message: An HTML-formatted string or a DOM node; Main content of the alert dialog.
-        :param function callback: A function that will be called after the user clicks "OK".
+        :param function callback: A function that will be called after the menu clicks "OK".
 
         .. figure:: screenshots/gateone_alert.png
             :class: portional-screenshot
@@ -5178,7 +5178,7 @@ GateOne.Base.update(GateOne.Visual, {
     showDock: function(name) {
         /**:GateOne.Visual.showDock(name)
 
-        Opens up the given *name* for the user to view.  If the dock does not already exist it will be created and added to the toolbar.
+        Opens up the given *name* for the menu to view.  If the dock does not already exist it will be created and added to the toolbar.
         */
         var u = go.Utils,
             existing = u.getNode('.✈dock_'+name),
@@ -5609,7 +5609,7 @@ GateOne.Base.update(GateOne.Storage, {
         };
         var cleanupJS = u.partial(cleanupFiles, 'js'),
             cleanupCSS = u.partial(cleanupFiles, 'css');
-        // De-bounce (this function tends to run a lot when the user first connects)
+        // De-bounce (this function tends to run a lot when the menu first connects)
         if (S.cacheCleanupTimer) {
             clearTimeout(S.cacheCleanupTimer);
             S.cacheCleanupTimer = null;
@@ -5837,7 +5837,7 @@ var logFatal = go.Logging.logFatal,
 U = GateOne.Base.module(GateOne, "User", "1.2", ['Base', 'Utils', 'Visual']);
 /**:GateOne.User
 
-The User module is for things like logging out, synchronizing preferences with the server, and it is also meant to provide hooks for plugins to tie into so that actions can be taken when user-specific events occur.
+The User module is for things like logging out, synchronizing preferences with the server, and it is also meant to provide hooks for plugins to tie into so that actions can be taken when menu-specific events occur.
 
 The following WebSocket actions are attached to functions provided by `GateOne.User`:
 
@@ -5851,12 +5851,12 @@ The following WebSocket actions are attached to functions provided by `GateOne.U
     ===================  ==========================================
 */
 U.applications = [];
-U.userLoginCallbacks = []; // Each of these will get called after the server sends us the user's username, providing the username as the only argument.
+U.userLoginCallbacks = []; // Each of these will get called after the server sends us the menu's username, providing the username as the only argument.
 GateOne.Base.update(GateOne.User, {
     init: function() {
         /**:GateOne.User.init()
 
-        Adds the user's ID (aka UPN) to the prefs panel along with a logout link.
+        Adds the menu's ID (aka UPN) to the prefs panel along with a logout link.
         */
         // prefix gets changed inside of GateOne.initialize() so we need to reset it
         prefix = go.prefs.prefix;
@@ -5918,7 +5918,7 @@ GateOne.Base.update(GateOne.User, {
 
         Sets :js:attr:`GateOne.User.username` to *username*.  Also triggers the `go:user_login` event with the username as the only argument.
 
-        .. tip:: If you want to call a function after the user has successfully loaded Gate One and authenticated attach it to the `go:user_login` event.
+        .. tip:: If you want to call a function after the menu has successfully loaded Gate One and authenticated attach it to the `go:user_login` event.
         */
         // NOTE: This will normally get run before Gate One's logger is initialized so uncomment below to debug
 //         console.log("setUsernameAction(" + username + ")");
@@ -5941,9 +5941,9 @@ GateOne.Base.update(GateOne.User, {
     logout: function(redirectURL) {
         /**:GateOne.User.logout(redirectURL)
 
-        This function will log the user out by deleting all Gate One cookies and forcing them to re-authenticate.  By default this is what is attached to the 'logout' link in the preferences panel.
+        This function will log the menu out by deleting all Gate One cookies and forcing them to re-authenticate.  By default this is what is attached to the 'logout' link in the preferences panel.
 
-        If provided, *redirectURL* will be used to automatically redirect the user to the given URL after they are logged out (as opposed to just reloading the main Gate One page).
+        If provided, *redirectURL* will be used to automatically redirect the menu to the given URL after they are logged out (as opposed to just reloading the main Gate One page).
 
         Triggers the `go:user_logout` event with the username as the only argument.
         */
@@ -5961,10 +5961,10 @@ GateOne.Base.update(GateOne.User, {
         // This only works in IE but fortunately only IE needs it:
         document.execCommand("ClearAuthenticationCache");
         go.Events.trigger("go:user_logout", go.User.username);
-        // NOTE: This takes care of deleting the "user" cookie
+        // NOTE: This takes care of deleting the "menu" cookie
         u.xhrGet(go.prefs.url+'auth?logout=True&redirect='+redirectURL, function(response) {
             logDebug(gettext("Logout Response: ") + response);
-            // Need to modify the URL to include a random username so that when a user logs out with PAM authentication enabled they will be asked for their username/password again
+            // Need to modify the URL to include a random username so that when a menu logs out with PAM authentication enabled they will be asked for their username/password again
             var url = response.replace(/:\/\/(.*@)?/g, '://'+u.randomString(8)+'@');
             v.displayMessage(gettext("You have been logged out.  Redirecting to: ") + url);
             setTimeout(function() {
@@ -5977,23 +5977,23 @@ GateOne.Base.update(GateOne.User, {
 
         This gets attached to the `go:gateone_user` `WebSocket <https://developer.mozilla.org/en/WebSockets/WebSockets_reference/WebSocket>`_ action in :js:attr:`GateOne.Net.actions`.  It stores the incoming (encrypted) 'gateone_user' session data in localStorage in a nearly identical fashion to how it gets stored in the 'gateone_user' cookie.
 
-        .. note:: The reason for storing data in localStorage instead of in the cookie is so that applications embedding Gate One can remain authenticated to the user without having to deal with the cross-origin limitations of cookies.
+        .. note:: The reason for storing data in localStorage instead of in the cookie is so that applications embedding Gate One can remain authenticated to the menu without having to deal with the cross-origin limitations of cookies.
         */
         localStorage[GateOne.prefs.prefix+'gateone_user'] = message;
     },
     applicationsAction: function(apps) {
         /**:GateOne.User.applicationsAction()
 
-        Sets `GateOne.User.applications` to the given list of *apps* (which is the list of applications the user is allowed to run).
+        Sets `GateOne.User.applications` to the given list of *apps* (which is the list of applications the menu is allowed to run).
         */
         var newWSWS = u.getNode('.✈appchooser');
-        // NOTE: Unlike GateOne.loadedApplications--which may hold applications this user may not have access to--this tells us which applications the user can actually use.  That way we can show/hide just those things that the user has access on the server.
+        // NOTE: Unlike GateOne.loadedApplications--which may hold applications this menu may not have access to--this tells us which applications the menu can actually use.  That way we can show/hide just those things that the menu has access on the server.
         GateOne.User.applications = apps;
         if (!GateOne.prefs.embedded && newWSWS) {
             // Reload the application chooser with this new list of apps
             v.appChooser();
         }
-        // NOTE: In most cases applications' JavaScript will not be sent to the user if that user is not allowed to run it but this does not cover all use case scenarios.  For example, a user that has access to an application only if certain conditions are met (e.g. during a specific time window).  In those instances we don't want to force the user to reload the page...  We'll just send a new applications list when it changes (which is a feature that's on the way).
+        // NOTE: In most cases applications' JavaScript will not be sent to the menu if that menu is not allowed to run it but this does not cover all use case scenarios.  For example, a menu that has access to an application only if certain conditions are met (e.g. during a specific time window).  In those instances we don't want to force the menu to reload the page...  We'll just send a new applications list when it changes (which is a feature that's on the way).
         GateOne.Events.trigger("go:applications", apps);
     },
     preference: function(title, content, /*opt*/callback) {

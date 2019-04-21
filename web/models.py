@@ -42,18 +42,18 @@ class Host(models.Model):
 
     # 主机状态
     hosts_status_choices = (
-        ('online', '在线'),
-        ('offline', '离线'),
-        ('maintain', '维修'),
-        ('stop_use', '停用'),
+        ('0', '在线'),
+        ('1', '离线'),
+        ('2', '维修'),
+        ('3', '停用'),
     )
 
     # 主机环境
     hosts_environment_choices = (
-        ('test', '测试'),
-        ('developing', '开发'),
-        ('pre_production ', '预生产'),
-        ('production ', '生产'),
+        ('0', '测试'),
+        ('1', '开发'),
+        ('2', '预生产'),
+        ('3', '生产'),
     )
     #主机类型
     Type = (
@@ -68,8 +68,8 @@ class Host(models.Model):
     version = models.CharField('版本',max_length=132)
     ssh = models.CharField('ssh端口',max_length=16,default=22)
     type = models.CharField('主机类型',max_length=12,choices=Type,default='3')
-    hosts_status = models.CharField('主机状态',choices=hosts_status_choices,max_length=64,default='production')
-    hosts_environment = models.CharField('主机环境',choices=hosts_environment_choices,max_length=64,default='production')
+    status = models.CharField('主机状态',choices=hosts_status_choices,max_length=64,default='0')
+    environment = models.CharField('主机环境',choices=hosts_environment_choices,max_length=64,default='3')
 
     def __str__(self):
         return self.ip
@@ -101,8 +101,8 @@ class TeamProjt(models.Model):
     develop_language = models.CharField('开发语言',max_length=20,choices=Language,default='0')
     team_status = models.CharField(choices=team_status_choices,verbose_name='项目状态',default='0', max_length=2)
     nginx_conf = models.CharField('nginx配置信息',max_length=254,null=True,blank=True)
-    project_path = models.CharField(verbose_name='linux项目路径',max_length=200)
     git_path = models.CharField(verbose_name='git地址',max_length=200)
+    project_path = models.CharField(verbose_name='linux项目路径', max_length=200)
     note = models.CharField('备注',max_length=300,null=True,blank=True)
     domain = models.CharField('域名',max_length=100,null=True,blank=True)
 
@@ -122,7 +122,7 @@ class Command(models.Model):
     class Meta:
         ordering = ['-create_time']
 
-#定时任务表
+#计划任务表
 class Cron(models.Model):
     name = models.CharField('计划名称',max_length=32,unique=True,)
     time = models.CharField('计划任务执行时间',max_length=32)

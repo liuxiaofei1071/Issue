@@ -32,7 +32,7 @@
 </form>
 
 <script>
-    $('#select').select2();
+    $('select').select2();
     {% if pk %}
         var url = "{% url 'edit_user' pk %}";
     {% else %}

@@ -1768,7 +1768,7 @@ function localeMeridiem (hours, minutes, isLower) {
 
 // MOMENTS
 
-// Setting the hour should keep the time, because the user explicitly
+// Setting the hour should keep the time, because the menu explicitly
 // specified which hour he wants. So trying to maintain the same hour (in
 // a new timezone) makes sense. Adding/subtracting hours does not follow
 // this rule.
