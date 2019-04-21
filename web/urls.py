@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from web.views import home
-from web.views import user,host,cron,team
+from web.views import user,host,cron,team,command
 
 
 
@@ -29,5 +29,11 @@ urlpatterns = [
     url(r'^add_team/', team.change_team, name='add_team'),
     url(r'^edit_team/(?P<pk>\d+)', team.change_team, name='edit_team'),
     url(r'^del_team/(\d+)', team.del_team, name='del_team'),
+
+    #命令url
+    url(r'^command_list/', command.command_list, name='command_list'),
+    url(r'^add_command/', command.change_command, name='add_command'),
+    url(r'^edit_command/(?P<pk>\d+)', command.change_command, name='edit_command'),
+    url(r'^del_command/(\d+)', command.del_command, name='del_command'),
 
 ]

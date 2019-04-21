@@ -116,7 +116,7 @@ class Command(models.Model):
     command = models.CharField(verbose_name="命令", max_length=200)
     result = models.CharField(verbose_name="结果", max_length=2000)
     hosts_list = models.CharField(verbose_name="执行机器", max_length=20000)
-    user = models.ForeignKey('User', verbose_name='用户')
+    user = models.ForeignKey('User', verbose_name='执行人')
     create_time = models.DateTimeField("创建时间", auto_now_add=True)
 
     class Meta:

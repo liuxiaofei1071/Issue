@@ -3,6 +3,7 @@ from web.models import User
 from web.models import Host
 from web.models import Cron
 from web.models import TeamProjt
+from web.models import Command
 from django.forms import ModelForm
 
 #定义bootstrap样式
@@ -62,7 +63,7 @@ class CronForm(BootstranpModelForm):
         model = Cron
         exclude = ["create_user", "time"]
 
-#主机Form
+#项目Form
 class TeamForm(BootstranpModelForm):
 
     class Meta:
@@ -79,3 +80,21 @@ class TeamForm(BootstranpModelForm):
         if name_obj:
             raise forms.ValidationError('项目已存在')
         return name
+
+#命令Form
+class CommandForm(BootstranpModelForm):
+
+    class Meta:
+        model = Command
+        fields = "__all__"
+
+    def clean_name(self):
+        command = self.cleaned_data['command']
+        if self.instance.pk:
+            command_obj = Host.objects.filter(command=command).exclude(pk=self.instance.pk)
+        else:
+            command_obj = Host.objects.filter(command=command)
+
+        if command_obj:
+            raise forms.ValidationError('命令已存在')
+        return command

@@ -1,0 +1,51 @@
+{% extends 'master/base.html' %}
+{% block body %}
+    <div class="col-md-6">
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="bg-black-active color-palette" style="height:450px;">
+            当前选中了:<span id="hosts_list_span"></span>机器<br>
+            结果显示:<span id="result_span"></span><br>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block js %}
+    <script>
+
+
+        function scheduler() {
+            $("#hosts_list_span").text($("#id_hosts_list").val());
+            $("#result_span").text($("#id_result").val());
+
+        }
+
+        scheduler();
+        /* 所有的select 和input发生改变以后都要执行scheduler函数
+            执行函数不能加括号
+         */
+        $("select,input").change(scheduler);
+
+
+        $('select').select2();
+        {% if pk %}
+            var url = "{% url 'edit_command' pk %}";
+        {% else %}
+            var url = "{% url 'add_command' %}";
+        {% endif %}
+
+        $("#createBtn").on("click", function () {
+            Net.post({
+                url: url,
+                btn: $("#createBtn"),
+                data: $("#createForm").serialize(),
+                go: "{% url 'command_list' %}"
+            })
+        })
+
+    </script>
+{% endblock %}
