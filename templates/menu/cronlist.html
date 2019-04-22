@@ -31,14 +31,17 @@
                         {% for cron in crons %}
                             <tr>
                                 <td>{{ cron.name }}</td>
-                                <td>{{ cron.host_list }}</td>
+                                <td>{% for h in  cron.host_list.all %}
+                                    {{ h.ip }}
+                                {% endfor %}
+                                </td>
                                 <td>{{ cron.user }}</td>
                                 <td>{{ cron.job }}</td>
                                 <td>{{ cron.time }}</td>
                                 <td>{{ cron.note|default_if_none:"" }}</td>
                                 <td>
-                                    <div data-url="{% url 'edit_cron' cron.pk %}"
-                                         class="btn btn-sm btn-success edit-btn">编辑<i class="fa fa-edit"></i></div>
+                                    <a href="{% url 'edit_cron' cron.pk %}"
+                                       class="btn btn-sm btn-success edit-btn">编辑<i class="fa fa-edit"></i></a>
                                     <div data-url="{% url 'del_cron' cron.pk %}" class="btn btn-sm btn-danger del-btn">
                                         删除<i class="fa fa-trash-o"></i></div>
                                 </td>
@@ -69,9 +72,7 @@
                 Net.get({
                     url: url,
                     reload: true,
-                  //  success:function (a) {
-                   //     window.location.reload()
-                 //   }
+
                 })
             })
         })

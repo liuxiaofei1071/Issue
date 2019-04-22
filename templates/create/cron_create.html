@@ -3,8 +3,7 @@
     <div class="col-md-6">
 
         <div>
-            <form action="" class="form-horizontal" id="createForm" method="post">
-                {% csrf_token %}
+            <form class="form-horizontal" id="createForm" action="" method="post">{% csrf_token %}
                 <div class="box-body">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">分钟
@@ -19,7 +18,9 @@
                             <span class="text-red">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="hour_select" name="time"></select>
+                            <select class="form-control" id="hour_select" name="time">
+
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,12 +47,9 @@
                             <select class="form-control" id="weekday_select" name="time"></select>
                         </div>
                     </div>
-
                     {% for field in form_obj %}
-                        <div style="overflow: hidden; margin-bottom: 5px;"
-                             class="from-group{% if field.errors %} has-error{% endif %}">
-                            <label class="col-sm-2 control-label" >
-                                {{ field.label }}
+                        <div class="form-group{% if field.errors %} has-error{% endif %}">
+                            <label class="col-sm-2 control-label">{{ field.label }}
                                 {% if field.field.required %}
                                     <span class="text-red">*</span>
                                 {% endif %}
@@ -60,41 +58,37 @@
                                 {{ field }}
                             </div>
                             <span class="help-block">
-                    {% for error in field.errors %}
-                        {{ error }}
-
-                    {% endfor %}
+                              {% for error in field.errors %}
+                                  {{ error }}
+                              {% endfor %}
                                 {{ field.help_text }}
-                </span>
+                            </span>
                         </div>
-
                     {% endfor %}
-
-                </div>
-                <div class=" text-center">
-                    <button type="reset" class="btn btn-sm btn-warning">清空</button>
-                    <button id="createBtn" type="button" class="btn btn-sm btn-info">提交</button>
-                    <p class="text-center"><i id='iconWait'></i></p>
+                    <div class="text-center">
+                        <button type="reset" class="btn btn-warning">清空</button>
+                        <button id="createBtn" type="button" class="btn btn-info">提交</button>
+                        <p class="text-center"><i id='iconWait'></i></p>
+                    </div>
                 </div>
             </form>
+            <!-- /.box-body -->
         </div>
 
     </div>
-
     <div class="col-md-6">
-        <div class="bg-black-active color-palette" style="height:450px;">
+        <div class="bg-black-active color-palette" style="height: 450px;">
             任务名称:<span id="name_span"></span><br>
-            执行人:<span id="user_span"></span><br>
+            执行用户:<span id="user_span"></span><br>
             执行时间:<span id="time_span"></span><br>
             执行任务:<span id="job_span"></span>
         </div>
     </div>
 
-
 {% endblock %}
 {% block js %}
     <script>
-
+        $("select").select2();
         /* 生成分钟列表*/
         var minute_select = $("#minute_select");
         minute_select.append("<option value=*>*</option>");
@@ -138,7 +132,6 @@
         for (var i = 0; i < 7; i++) {
             weekday_select.append("<option value=" + i + ">" + wds[i] + "</option>");
         }
-
         function scheduler() {
             var time = "" + minute_select.val() + " " + hour_select.val() + " " + day_select.val() + " " + month_select.val() + " " + weekday_select.val();
             $("#name_span").text($("#id_name").val());
@@ -146,21 +139,22 @@
             $("#job_span").text($("#id_job").val());
             $("#time_span").text(time);
         }
-
         scheduler();
         /* 所有的select 和input发生改变以后都要执行scheduler函数
             执行函数不能加括号
          */
         $("select,input").change(scheduler);
 
-
-        $('select').select2();
-        {% if pk %}
-            var url = "{% url 'edit_cron' pk %}";
-        {% else %}
-            var url = "{% url 'add_cron' %}";
-        {% endif %}
-
+        if ("{{ pk }}" == "0") {
+            url = "{% url 'add_cron' %}"
+        } else {
+            url = "{% url 'edit_cron' pk %}";
+            minute_select.find("option[value='"+{{ time|safe }}[0]+"']").attr("selected",true);
+            hour_select.find("option[value='"+{{ time|safe }}[1]+"']").attr("selected",true);
+            day_select.find("option[value='"+{{ time|safe }}[2]+"']").attr("selected",true);
+            month_select.find("option[value='"+{{ time|safe }}[3]+"']").attr("selected",true);
+            weekday_select.find("option[value='"+{{ time|safe }}[4]+"']").attr("selected",true);
+        }
         $("#createBtn").on("click", function () {
             Net.post({
                 url: url,

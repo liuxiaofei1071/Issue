@@ -66,7 +66,7 @@ class Host(models.Model):
     name = models.CharField('主机名称',max_length=254,unique=True)
     ip = models.GenericIPAddressField('主机ip地址')
     version = models.CharField('版本',max_length=132)
-    ssh = models.CharField('ssh端口',max_length=16,default=22)
+    ssh  = models.CharField('ssh端口',max_length=16,default=22)
     type = models.CharField('主机类型',max_length=12,choices=Type,default='3')
     status = models.CharField('主机状态',choices=hosts_status_choices,max_length=64,default='0')
     environment = models.CharField('主机环境',choices=hosts_environment_choices,max_length=64,default='3')
