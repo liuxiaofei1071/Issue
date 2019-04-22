@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2259c5b8-e202-4059-b090-a64a1c3934f7" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
@@ -544,6 +545,9 @@
       <change beforePath="$PROJECT_DIR$/web/views/cron.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/cron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/host.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/host.py" afterDir="false" />
     </list>
+=======
+    <list default="true" id="2259c5b8-e202-4059-b090-a64a1c3934f7" name="Default Changelist" comment="" />
+>>>>>>> master
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -653,6 +657,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/create/cron_create.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -670,6 +675,22 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-176">
               <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="35" selection-end-column="44" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/create/cron_create.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="784">
+              <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/menu/cronlist.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-176">
+              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="37" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -686,6 +707,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views/cron.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -694,16 +716,33 @@
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
                 <marker date="1555945447093" expanded="true" signature="284:285" ph="..." />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/views/cron.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+>>>>>>> master
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/views/host.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="232">
               <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/views/host.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+>>>>>>> master
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -853,11 +892,19 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="E:\S17\ZDH\Issue\static\plugins" />
       <recent name="E:\S17\ZDH\Issue\utils" />
       <recent name="E:\S17\ZDH\Issue\templates\menu" />
       <recent name="E:\S17\ZDH\Issue\templates\create" />
       <recent name="E:\S17\ZDH\Issue\web" />
+=======
+      <recent name="E:\S17\ZDH\Issue\templates\menu" />
+      <recent name="E:\S17\ZDH\Issue\templates\create" />
+      <recent name="E:\S17\ZDH\Issue\web" />
+      <recent name="E:\S17\ZDH\Issue\static" />
+      <recent name="E:\S17\ZDH\Issue\static\js" />
+>>>>>>> master
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\S17\ZDH\Issue\templates\create" />
@@ -1163,17 +1210,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/auth.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state>
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="215">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/ansible2/inventory.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1370">
           <caret line="132" column="41" lean-forward="true" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
+=======
+        <state relative-caret-position="40">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+>>>>>>> master
           <folding>
             <element signature="e#16#67#0" expanded="true" />
           </folding>
@@ -1182,6 +1239,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/master/css.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="288">
           <caret line="24" column="48" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="48" />
         </state>
@@ -1197,6 +1255,10 @@
             <element signature="e#2388#2552#0" />
             <element signature="e#2398#2545#0" />
           </folding>
+=======
+        <state relative-caret-position="304">
+          <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -1219,8 +1281,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/create/host_create.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="192">
           <caret line="35" column="2" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="39" selection-end-column="15" />
+=======
+        <state relative-caret-position="-176">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="37" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -1264,8 +1331,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/master/base.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-360">
           <caret line="19" column="47" lean-forward="true" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+=======
+        <state relative-caret-position="784">
+          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -1308,11 +1380,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views/cron.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="976">
           <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
             <marker date="1555945447093" expanded="true" signature="284:285" ph="..." />
+=======
+        <state relative-caret-position="376">
+          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+>>>>>>> master
           </folding>
         </state>
       </provider>
