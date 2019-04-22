@@ -21,21 +21,20 @@
                     <table class="table table-hover">
                         <tr>
                             <td>命令</td>
-                            <td>主机</td>
-                            <td>执行人</td>
-                            <td>操作</td>
+                            <td>主机列表</td>
+                            <td>执行时间</td>
+                            {% if user.is_admin == "0" %}
+                                <td>执行用户</td>
+                            {% endif %}
                         </tr>
                         {% for command in commands %}
                             <tr>
                                 <td>{{ command.command }}</td>
                                 <td>{{ command.hosts_list }}</td>
-                                <td>{{ command.user }}</td>
-                                <td>
-                                    <div data-url="{% url 'edit_command' command.pk %}"
-                                         class="btn btn-sm btn-success edit-btn">编辑<i class="fa fa-edit"></i></div>
-                                    <div data-url="{% url 'del_command' command.pk %}" class="btn btn-sm btn-danger del-btn">
-                                        删除<i class="fa fa-trash-o"></i></div>
-                                </td>
+                                <td>{{ command.create_time|date:"Y-m-d H:i:s" }}</td>
+                                {% if user.is_admin == "0" %}
+                                    <td>{{ command.user.username }}</td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
 

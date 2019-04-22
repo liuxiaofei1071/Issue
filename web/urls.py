@@ -33,7 +33,5 @@ urlpatterns = [
     #命令url
     url(r'^command_list/', command.command_list, name='command_list'),
     url(r'^add_command/', command.change_command, name='add_command'),
-    url(r'^edit_command/(?P<pk>\d+)', command.change_command, name='edit_command'),
-    url(r'^del_command/(\d+)', command.del_command, name='del_command'),
 
 ]

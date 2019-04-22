@@ -1,51 +1,204 @@
 {% extends 'master/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'plugins/zTree_v3/css/zTreeStyle/zTreeStyle.css' %}" type="text/css">
+{% endblock %}
 {% block body %}
     <div class="col-md-6">
+        <div>
+            <form class="form-horizontal" id="createForm" action="" method="post">{% csrf_token %}
+                <div class="box-body">
 
+                    <div class="zTreeDemoBackground left" style="overflow: scroll;height: 350px">
+                        <ul id="treeDemo" class="ztree"></ul>
+                    </div>
+                    <textarea style="height: 80px;width: 100%" id="command_text"></textarea>
+                    <div class="text-center">
+                        <button type="reset" class="btn btn-warning">清空</button>
+                        <button id="createBtn" type="button" class="btn btn-info">提交</button>
+                        <p class="text-center"><i id='iconWait'></i></p>
+                    </div>
+                </div>
+            </form>
+            <!-- /.box-body -->
+        </div>
     </div>
 
     <div class="col-md-6">
-        <div class="bg-black-active color-palette" style="height:450px;">
-            当前选中了:<span id="hosts_list_span"></span>机器<br>
-            结果显示:<span id="result_span"></span><br>
-
+        <div class="bg-black-active color-palette" style="height: 450px;">
+            选中<span id="count_span"></span>台主机<br>
+            命令展示:<pre id="com_span"></pre><br>
         </div>
     </div>
 
 
 {% endblock %}
 {% block js %}
+    <script type="text/javascript" src="{% static 'plugins/zTree_v3/js/jquery.ztree.core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/zTree_v3/js/jquery.ztree.excheck.js' %}"></script>
     <script>
 
+ $("select").select2();
 
-        function scheduler() {
-            $("#hosts_list_span").text($("#id_hosts_list").val());
-            $("#result_span").text($("#id_result").val());
+        var setting = {
+            view: {
+                selectedMulti: false
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onCheck: onCheck
+            }
+        };
+
+        var clearFlag = false;
+
+        function onCheck(e, treeId, treeNode) {
+            count();
+            if (clearFlag) {
+                clearCheckedOldNodes();
+            }
+        }
+
+        function clearCheckedOldNodes() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nodes = zTree.getChangeCheckedNodes();
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                nodes[i].checkedOld = nodes[i].checked;
+            }
+        }
+
+        function count() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                checkCount = zTree.getCheckedNodes(true).length,
+                nocheckCount = zTree.getCheckedNodes(false).length,
+                changeCount = zTree.getChangeCheckedNodes().length;
+            if (checkCount > 1) {
+                $("#count_span").text(checkCount - 1);
+            } else {
+                $("#count_span").text(0);
+            }
 
         }
 
-        scheduler();
-        /* 所有的select 和input发生改变以后都要执行scheduler函数
-            执行函数不能加括号
-         */
-        $("select,input").change(scheduler);
+        function createTree() {
+            $.fn.zTree.init($("#treeDemo"), setting, {{ nodes|safe }});
+            count();
 
+            clearFlag = $("#last").attr("checked");
+        }
 
-        $('select').select2();
-        {% if pk %}
-            var url = "{% url 'edit_command' pk %}";
-        {% else %}
-            var url = "{% url 'add_command' %}";
-        {% endif %}
+        $(document).ready(function () {
+            createTree();
+            $("#init").bind("change", createTree);
+            $("#last").bind("change", createTree);
+        });
+        /* ajax添加csrfkey*/
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
 
         $("#createBtn").on("click", function () {
-            Net.post({
-                url: url,
-                btn: $("#createBtn"),
-                data: $("#createForm").serialize(),
-                go: "{% url 'command_list' %}"
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nodes = zTree.getCheckedNodes(true);
+            node_ips = [];
+            if(nodes.length ==0){
+                {#alert("请选择主机")#}
+                return
+            }
+            if($("#command_text").val() == ""){
+                alert("请输入命令")
+                return
+            }
+            nodes.forEach(function (node) {
+                if (node.pId) {
+                    node_ips.push(node.name)
+                }
+            });
+            console.log(node_ips);
+            $("#createBtn").attr('disabled', 'disabled'); //disabled 当前图标不可点
+            $("#iconWait").addClass("fa fa-spinner fa-spin") //loading
+
+
+            $.post({
+                url: "{% url 'add_command' %}",
+                data: {
+                    nodes: node_ips,
+                    command: $("#command_text").val()
+                },
+                success: function (res) {
+                    var msg="";
+                    $("#createBtn").attr('disabled', null); //disabled 当前图标不可点
+                    $("#iconWait").removeClass("fa fa-spinner fa-spin"); //loading
+                    console.log(res.msg);
+                    if(Object.values(res.msg.ok).length !=0){
+                        var data_ok=res.msg.ok;
+                        $.each(data_ok,function (k,v) {
+                            msg=msg+"<font color=yellow>"+ k + "| CHANGED | rc=0 >>\n";
+                            msg=msg+v.command.stdout+"</font>\n";
+                        })
+                    }
+                    if(Object.values(res.msg.skipped).length !=0){
+                        var data_skipped=res.msg.skipped;
+                        $.each(data_skipped,function (k,v) {
+                            msg=msg+"<font color=cyan>"+ k + "| SKIPPED | rc=0 >>\n";
+                            msg=msg+v.command.stdout+"</font>\n";
+                        })
+                    }
+                    if(Object.values(res.msg.failed).length !=0){
+                        var data_failed=res.msg.failed;
+                        $.each(data_failed,function (k,v) {
+                            msg=msg+"<font color=red>"+ k + "| FAILED | rc=2 >>\n";
+                            msg=msg+v.command.stdout+"\n";
+                            msg=msg+v.command.stderr+"</font>\n";
+                        })
+                    }
+                    if(Object.values(res.msg.unreachable).length !=0){
+                        var data_unreachable=res.msg.unreachable;
+                        $.each(data_unreachable,function (k,v) {
+                            msg=msg+"<font color=red>"+ k + "| UNREACHABLE!  >>\n";
+                            msg=msg+v.command.msg+"</font>\n";
+                        })
+                    }
+
+                    $("#com_span").html(msg);
+                }
             })
         })
+
 
     </script>
 {% endblock %}

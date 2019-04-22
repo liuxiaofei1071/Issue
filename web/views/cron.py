@@ -20,8 +20,7 @@ def cron_list(request):
 
 # 新增/编辑主机
 def change_cron(request, pk=0):
-    cron = Cron.objects.filter(pk=pk).first()
-    print(cron.time)
+    cron = Cron.objects.filter(pk=pk).first()   
     time = None if not pk else cron.time
     form_obj = CronForm(instance=cron)
     title = "编辑" if pk else "添加"

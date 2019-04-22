@@ -88,13 +88,3 @@ class CommandForm(BootstranpModelForm):
         model = Command
         fields = "__all__"
 
-    def clean_name(self):
-        command = self.cleaned_data['command']
-        if self.instance.pk:
-            command_obj = Host.objects.filter(command=command).exclude(pk=self.instance.pk)
-        else:
-            command_obj = Host.objects.filter(command=command)
-
-        if command_obj:
-            raise forms.ValidationError('命令已存在')
-        return command
