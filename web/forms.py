@@ -4,6 +4,8 @@ from web.models import Host
 from web.models import Cron
 from web.models import TeamProjt
 from web.models import Command
+from web.models import Init
+from web.models import InitLog
 from django.forms import ModelForm
 
 #定义bootstrap样式
@@ -88,3 +90,28 @@ class CommandForm(BootstranpModelForm):
         model = Command
         fields = "__all__"
 
+#初始化Form
+class InitForm(BootstranpModelForm):
+
+    class Meta:
+        model = Init
+        fields = "__all__"
+
+    def clean_function(self):
+        func = self.cleaned_data['func']
+        if self.instance.pk:
+            func_obj = User.objects.filter(func=func).exclude(pk=self.instance.pk)
+        else:
+            func_obj = User.objects.filter(func=func)
+
+        if func_obj:
+            raise forms.ValidationError('该功能已初始化')
+
+        return func
+
+# 初始化日志Form
+class InitLogForm(BootstranpModelForm):
+
+    class Meta:
+        model = InitLog
+        fields = ['init','hosts_list']

@@ -1,0 +1,113 @@
+{% extends 'master/base.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+
+                    <div class="btn btn-sm btn-success create-btn">新增初始化</div>
+                    <div class="btn btn-sm btn-success update-btn">初始化更新</div>
+
+                    <div class="box-tools  pull-right">
+                        <form action="" method="get">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding text-center">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>名称</td>
+                            <td>功能</td>
+                            <td>playbook地址</td>
+                            <td>创建时间</td>
+                            <td>操作</td>
+                        </tr>
+                        {% for init in inits %}
+                            <tr>
+                                <td>{{ init.name }}</td>
+                                <td>{{ init.function }}</td>
+                                <td>{{ init.play_book }}</td>
+                                <td>{{ init.create_time|date:"Y-m-d H:m:s" }}</td>
+                                <td>
+
+                                    <div data-url="{% url 'edit_init' init.pk %}"
+                                         class="btn btn-xs btn-success edit-user">编辑
+                                    </div>
+                                    <div data-url="{% url 'detail_init' init.pk %}"
+                                         class="btn btn-xs btn-warning detail-btn">
+                                        详情
+                                    </div>
+                                    <div data-url="{% url 'del_init' init.pk %}" class="btn btn-xs btn-warning del-user">
+                                        删除
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+                <nav class="text-center">
+                    <ul class="pagination">
+                        {{ page_html }}
+                    </ul>
+                </nav>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <!-- ./col -->
+{% endblock %}
+{% block js %}
+    <script>
+        $("#init").addClass("active");
+        $(".create-btn").on("click", function () {
+            ui.box({
+                "title": "创建初始化",
+                "remote":"{% url 'add_init' %}",
+
+            });
+        });
+        $(".update-btn").on("click", function () {
+            ui.box({
+                "title": "初始化更新",
+                "remote":"{% url 'createlog' %}",
+
+            });
+        });
+        $(".edit-user").on("click", function () {
+            ui.box({
+                "title": "编辑初始化",
+                "remote": $(this).attr("data-url"),
+
+            });
+        });
+        $(".detail-btn").on("click", function () {
+            ui.box({
+                "title": "初始化详情",
+                "remote": $(this).attr("data-url"),
+
+            });
+        });
+        $(".del-user").on("click", function (e) {
+            e.preventDefault(); //取消原来自带的属性
+            var url = $(this).attr("data-url");
+            ui.confirm("请确认是否删除本条记录", function () {
+                Net.get({
+                    url: url,
+                    reload: true
+                })
+            });
+        })
+    </script>
+{% endblock %}

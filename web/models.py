@@ -142,7 +142,7 @@ class Cron(models.Model):
 #初始化表
 class Init(models.Model):
     name = models.CharField('名称',max_length=30,unique=True)
-    function = models.CharField('初始化功能',max_length=200,unique=True)
+    func = models.CharField('初始化功能',max_length=200,unique=True)
     playbook = models.CharField('playbook路径',max_length=100)
     create_time = models.DateTimeField('创建时间',auto_now_add=True)
     create_user = models.ForeignKey('User',verbose_name='创建者')

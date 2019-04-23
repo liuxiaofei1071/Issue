@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-xs-12">
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding text-center">
+            <table class="table table-hover">
+                <tr>
+                    <td>主机列表</td>
+                    <td>创建用户</td>
+                    <td>创建时间</td>
+                </tr>
+                {% for initlog in initlogs %}
+                    <tr>
+                        <td>{% for h in initlog.hosts_list.all %}
+                            {{ h.ip }}
+                        {% endfor %}
+                        </td>
+                        <td>{{ initlog.user }}</td>
+                        <td>{{ initlog.create_time|date:"Y-m-d H:m:s" }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+        <nav class="text-center">
+            <ul class="pagination">
+                {{ page_html }}
+            </ul>
+        </nav>
+        <!-- /.box-body -->
+        <!-- /.box -->
+    </div>
+</div>

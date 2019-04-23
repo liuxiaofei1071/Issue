@@ -86,7 +86,7 @@ class PlayBookRunner(object):
         self.variable_manager = self.variable_manager_class(
             loader=self.loader, inventory=self.inventory
         )
-        self.passwords = options.passwords
+        self.passwords = self.options.passwords
         # self.__check()
 
     def __check(self):

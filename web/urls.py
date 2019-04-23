@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from web.views import home
-from web.views import user,host,cron,team,command
+from web.views import user,host,cron,team,command,init,initlog
 
 
 
@@ -33,5 +33,15 @@ urlpatterns = [
     #命令url
     url(r'^command_list/', command.command_list, name='command_list'),
     url(r'^add_command/', command.change_command, name='add_command'),
+
+    #初始化url
+    url(r'^init_list/', init.init_list,name='init_list'),
+    url(r'^add_init/', init.change_init,name='add_init'),
+    url(r'^edit_init/(?P<pk>\d+)', init.change_init,name='edit_init'),
+    url(r'^detail_init/(?P<pk>\d+)', init.detail_init,name='detail_init'),
+    url(r'^del_init/(\d+)', init.del_init,name='del_init'),
+
+    # 增加初始化日志
+    url(r'^createlog/', initlog.create_initlog,name='createlog'),
 
 ]
