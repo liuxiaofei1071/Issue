@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^team_list/', team.team_list, name='team_list'),
     url(r'^add_team/', team.change_team, name='add_team'),
     url(r'^edit_team/(?P<pk>\d+)', team.change_team, name='edit_team'),
+    url(r'^detail_team/(?P<pk>\d+)', team.detail_team, name='detail_team'),
     url(r'^del_team/(\d+)', team.del_team, name='del_team'),
 
     #命令url

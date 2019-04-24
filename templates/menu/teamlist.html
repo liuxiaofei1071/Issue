@@ -38,8 +38,10 @@
                                 <td>{{ team.domain|default_if_none:"" }}</td>
                                 <td>
                                     <div data-url="{% url 'edit_team' team.pk %}"
-                                         class="btn btn-sm btn-success edit-btn">编辑<i class="fa fa-edit"></i></div>
-                                    <div data-url="{% url 'del_team' team.pk %}" class="btn btn-sm btn-danger del-btn">
+                                         class="btn btn-xs btn-success edit-btn">编辑<i class="fa fa-edit"></i></div>
+                                    <div data-url="{% url 'detail_team' team.pk %}"
+                                         class="btn btn-xs btn-warning detail-btn">详情<i class="fa fa-life-saver"></i></div>
+                                    <div data-url="{% url 'del_team' team.pk %}" class="btn btn-xs btn-danger del-btn">
                                         删除<i class="fa fa-trash-o"></i></div>
                                 </td>
                             </tr>
@@ -66,7 +68,7 @@
             });
         });
 
-        //编辑主机
+        //编辑项目
         $(" .edit-btn").on("click", function () {
             ui.box({
                 "title": "编辑项目",
@@ -74,7 +76,15 @@
             });
         });
 
-        //删除用户
+         //项目详情
+        $(" .detail-btn").on("click", function () {
+            ui.box({
+                "title": "项目详情",
+                "remote": $(this).attr("data-url"),
+            });
+        });
+
+        //删除项目
         $(" .del-btn").on("click", function (e) {
             e.preventDefault();
             var url = $(this).attr("data-url");

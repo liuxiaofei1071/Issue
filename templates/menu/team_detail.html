@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-xs-12">
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding text-center">
+            <table class="table table-hover">
+                <tr>
+                    <td>项目名称</td>
+                    <td>{{ team.name }}</td>
+                </tr>
+                <tr>
+                    <td>责任人</td>
+                    <td>{% for b in team.boss.all %}{{ b.username }}{% endfor %}</td>
+                </tr>
+                <tr>
+                    <td>测试人员</td>
+                    <td>{% for t in team.tester.all %}{{ t.username }}{% endfor %}</td>
+                </tr>
+                <tr>
+                    <td>开发人员</td>
+                    <td>{% for d in team.developer.all %}{{ d.username }}{% endfor %}</td>
+                </tr>
+                <tr>
+                    <td>运维人员</td>
+                    <td>{% for o in team.ops_user.all %}{{ o.username }}{% endfor %}</td>
+                </tr>
+                <tr>
+                    <td>项目目录</td>
+                    <td>{{ team.project_path }}</td>
+                </tr>
+                <tr>
+                    <td>git地址</td>
+                    <td>{{ team.git_path }}</td>
+                </tr>
+                <tr>
+                    <td>nginx地址</td>
+                    <td>
+                        <table class="table table-hover">
+                            <tr>
+                                <td>主机名</td>
+                                <td>IP地址</td>
+                                <td>端口</td>
+                            </tr>
+                            {% for ng in team.nginx_host.all %}
+                                <tr>
+                                    <td>{{ ng.name }}</td>
+                                    <td>{{ ng.ip }}</td>
+                                    <td>{{ ng.ssh }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>nginx配置路径</td>
+                    <td>{{ team.nginx_conf }}</td>
+                </tr>
+                <tr>
+                    <td>后端地址</td>
+                    <td>
+                        <table class="table table-hover">
+                            <tr>
+                                <td>后端主机名</td>
+                                <td>IP地址</td>
+                                <td>端口</td>
+                            </tr>
+                            {% for sh in team.server_host.all %}
+                                <tr>
+                                    <td>{{ sh.name }}</td>
+                                    <td>{{ sh.ip }}</td>
+                                    <td>{{ sh.ssh }}</td>
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>开发语言</td>
+                    <td>{{ team.get_develop_language_display }}</td>
+                </tr>
+                <tr>
+                    <td>项目状态</td>
+                    <td>{{ team.get_team_status_display }}</td>
+                </tr>
+                <tr>
+                    <td>项目域名</td>
+                    <td>{{ team.domain|default_if_none:"" }}</td>
+                </tr>
+                <tr>
+                    <td>项目描述</td>
+                    <td>{{ team.note|default_if_none:"" }}</td>
+                </tr>
+            </table>
+
+        </div>
+        <!-- /.box-body -->
+        <!-- /.box -->
+    </div>
+</div>

@@ -4,6 +4,7 @@ from web.forms import TeamForm
 from utils.pagination import Pagination
 from django.template.response import TemplateResponse
 from django.http import JsonResponse
+from utils.gitfile import Gitclass
 
 
 #展示项目列表
@@ -24,7 +25,7 @@ def change_team(request,pk=None):
 
         form_obj = TeamForm(request.POST,instance=team)
         if form_obj.is_valid():
-
+            Gitclass(form_obj.cleaned_data['name'],form_obj.cleaned_data['git_path'])
             form_obj.save()
             return JsonResponse({'status':0,'msg':f'{title}成功'})
         else:
@@ -39,3 +40,8 @@ def del_team(request,pk):
         return JsonResponse({'status':0,'msg':'删除成功'})
     else:
         return JsonResponse({'status':1,'msg':'删除失败'})
+
+#项目详情
+def detail_team(request,pk):
+    team = TeamProjt.objects.filter(pk=pk).first()
+    return render(request,"menu/team_detail.html",{'team':team})

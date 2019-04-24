@@ -67,6 +67,13 @@ class CronForm(BootstranpModelForm):
 
 #项目Form
 class TeamForm(BootstranpModelForm):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        #选择相关人员的时候,只显示对应的人员,开发,测试,运维人员
+        self.fields['developer'].choices = [(d.pk,d.username) for d in User.objects.filter(role="0")]
+        self.fields['tester'].choices = [(t.pk,t.username) for t in User.objects.filter(role="1")]
+        self.fields['ops_user'].choices = [(o.pk,o.username) for o in User.objects.filter(role="2")]
+
 
     class Meta:
         model = TeamProjt
