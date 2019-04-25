@@ -6,6 +6,7 @@ from web.models import TeamProjt
 from web.models import Command
 from web.models import Init
 from web.models import InitLog
+from web.models import Issue
 from django.forms import ModelForm
 
 #定义bootstrap样式
@@ -122,3 +123,12 @@ class InitLogForm(BootstranpModelForm):
     class Meta:
         model = InitLog
         fields = ['init','hosts_list']
+
+#发布
+#初始化Form
+class GitForm(BootstranpModelForm):
+
+    class Meta:
+        model = Issue
+        fields =["team","backup"]
+

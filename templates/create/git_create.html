@@ -1,0 +1,160 @@
+<form action="" class="form-horizontal" id="createForm" method="post">
+    {% csrf_token %}
+    <div class="box-body">
+        {% for field in form_obj %}
+            <div style="overflow: hidden; margin-bottom: 10px"
+                 class="from-group{% if field.errors %} has-error{% endif %}">
+                <label class="col-sm-2 control-label">{{ field.label }}
+                    {% if field.field.required %}
+                        <span class="text-red">*</span>
+                    {% endif %}
+                </label>
+                <div class="col-sm-9">
+                    {{ field }}
+                </div>
+                <span class="help-block">
+                    {% for error in field.errors %}
+                        {{ error }}
+
+                    {% endfor %}
+                    {{ field.help_text }}
+                </span>
+            </div>
+
+        {% endfor %}
+        <!-- 选择更新方式，通过单选按钮实现-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">更新类型
+                <span class="text-red">*</span>
+            </label>
+            <div class="col-sm-9" id="update_type">
+                <label>
+                    <input type="radio" name="radio" class="minimal id2" value="bra" checked>分支更新
+                </label>
+                <label>
+                    <input type="radio" name="radio" class="minimal id2" value="tag"> tag更新
+                </label>
+            </div>
+        </div>
+        <!--通过分支+提交记录更新-->
+        <div class="form-group bra_name">
+            <label class="col-sm-2 control-label">分支
+                <span class="text-red">*</span>
+            </label>
+            <div class="col-sm-9">
+                <select class="form-control" id="bra_select" name="bra_select"></select>
+            </div>
+        </div>
+        <div class="form-group bra_commit">
+            <label class="col-sm-2 control-label">提交记录
+                <span class="text-red">*</span>
+            </label>
+            <div class="col-sm-9">
+                <select class="form-control" id="commit_select" name="commit_select"></select>
+            </div>
+
+        </div>
+        <!--基于tag标签更新-->
+        <div class="form-group tag_name">
+            <label class="col-sm-2 control-label">tag版本
+                <span class="text-red">*</span>
+            </label>
+            <div class="col-sm-9">
+                <select class="form-control" id="tag_select" name="tag_select"></select>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="box-footer text-center">
+        <button type="reset" class="btn btn-sm btn-warning">清空</button>
+        <button id="createBtn" type="button" class="btn btn-sm btn-info">提交</button>
+        <p class="text-center"><i id='iconWait'></i></p>
+    </div>
+</form>
+
+<script>
+    $('select').select2();
+    $(".tag_name").hide();
+    /*通过不同的单选框实现不同的input显示与隐藏*/
+    $(".id2").change(function () {
+        /* id2:checked代表当前选中的值*/
+        var type_check = $(".id2:checked").val();
+        if (type_check == "bra") {
+            $(".tag_name").hide();
+            $(".bra_name").show();
+            $(".bra_commit").show()
+        } else {
+            /* show 显示
+               hide 隐藏
+               empty 清空
+            */
+            $(".tag_name").show();
+            $(".bra_name").hide();
+            $(".bra_commit").hide();
+            $(".tag_name").empty();
+            $("#tag_select").append("<option value='0'>" + "---------" + "</option>");
+            var team_val = $('#id_team').val() || 0;
+            /* 获取tag标签*/
+            $.get({
+                url: "/get_tag/" + team_val,
+                success: function (res) {
+                    data = res.data;
+                    data.forEach(function (d) {
+                        $("#tag_select").append("<option value='" + d + "'>" + d + "</option>")
+                    })
+
+                }
+            })
+        }
+    });
+    /* 获取分支信息*/
+    $("#id_team").change(function () {
+        //team_val获取到id_team,也就是项目表的pk
+        var team_val = $('#id_team').val() || 0;
+        $("#bra_select").append("<option value='0'>" + "---------" + "</option>");
+        $.get({
+            //二级路由,需要加上一级路由/web地址
+            url: "/web/get_bra/" + team_val,
+            success: function (res) {
+                 //拿到后端分支数据
+                data = res.data;
+                //循环取到每个分支,添加option下拉框
+                data.forEach(function (d) {
+                    console.log(d);
+                    $("#bra_select").append("<option value='" + d + "'>" + d + "</option>")
+                })
+            }
+        })
+    });
+    /*获取commit*/
+    $("#bra_select").change(function () {
+        var team_val = $('#id_team').val() || 0;
+        var bra_val = $('#bra_select').val() || 0;
+        $("#commit_select").empty();
+        $("#commit_select").append("<option value='0'>" + "---------" + "</option>");
+        $.get({
+            url: "/get_commit/" + team_val + "/" + bra_val,
+            success: function (res) {
+                data = res.data;
+                data.forEach(function (d) {
+                    console.log(d);
+                    $("#commit_select").append("<option value='" + d.id + "'>" + d.message + "</option>")
+                })
+
+            }
+        })
+    })
+
+    $("#createBtn").on("click", function () {
+        Net.post({
+            url: "{% url 'create_git' %}",
+            btn: $("#createBtn"),
+            data: $("#createForm").serialize(),
+            go: "{% url 'update_list' %}"
+        })
+    })
+
+
+</script>

@@ -39,8 +39,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li id="issue"><a href="index.html"><i class="fa fa-circle-o"></i> 发布列表</a></li>
-                    <li id="backup"><a href="index2.html"><i class="fa fa-circle-o"></i>回滚列表</a></li>
+                    <li id="issue"><a href="{% url 'update_list' %}"><i class="fa fa-circle-o"></i> 发布列表</a></li>
+                    <li id="backup"><a href="{% url 'rollback_list' %}"><i class="fa fa-circle-o"></i>回滚列表</a></li>
                 </ul>
             </li>
             <li id="host">
